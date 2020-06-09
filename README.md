@@ -23,11 +23,12 @@ npm install starred_search -g
 starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6'
 ```
 
-I recommend that you create an alias in your shell to avoid repeating the required parameters. Example alias in fish:
+I recommend that you create an alias in your shell to avoid repeating the required parameters. 
 
+Example alias in fish and bash:
 ```
 # Create an alias (this is temporary, you might want to make it permanent)
-alias stars="./starred_search --user 'link-' --cache-dir '/tmp/.cache'"
+alias stars="starred_search --user 'link-' --cache-dir '/tmp/.cache'"
 
 # Then you can use it as:
 stars -f 'es6'
