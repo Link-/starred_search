@@ -1,0 +1,25 @@
+{
+  "name": "starred-search",
+  "version": "0.1.0",
+  "description": "Search your starred repositories on GitHub for a keyword.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": ["GitHub", "repository", "fuzzy search", "starred"],
+  "author": "Link-",
+  "license": "ISC",
+  "dependencies": {
+    "arg": "^4.1.3",
+    "axios": "^0.19.2",
+    "chalk": "^4.1.0",
+    "esm": "^3.2.25",
+    "flat-cache": "^2.0.1",
+    "fuzzy-search": "^3.2.1",
+    "imurmurhash": "^0.1.4"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.2.0"
+  }
+}
