@@ -1,11 +1,23 @@
 {
-  "name": "starred-search",
-  "version": "0.1.0",
+  "name": "starred_search",
+  "version": "0.1.1",
   "description": "Search your starred repositories on GitHub for a keyword.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
+  "bin": {
+    "@link-/starred_search": "bin/starred_search",
+    "starred_search": "bin/starred_search"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Link-/starred_search.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Link-/starred_search/issues"
+  },
+  "homepage": "https://github.com/Link-/starred_search/#readme",
   "keywords": [
     "GitHub",
     "repository",
