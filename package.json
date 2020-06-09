@@ -6,7 +6,12 @@
   "scripts": {
     "test": "mocha"
   },
-  "keywords": ["GitHub", "repository", "fuzzy search", "starred"],
+  "keywords": [
+    "GitHub",
+    "repository",
+    "fuzzy search",
+    "starred"
+  ],
   "author": "Link-",
   "license": "ISC",
   "dependencies": {
