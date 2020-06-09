@@ -1,6 +1,6 @@
 {
   "name": "starred_search",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Search your starred repositories on GitHub for a keyword.",
   "main": "index.js",
   "scripts": {
