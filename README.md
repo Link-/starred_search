@@ -1,5 +1,9 @@
-# ldapfaker
-> NodeJS script to generate a fake LDIF that can be imported to any AD solution for testing purposes
+# starred_search
+> Search your starred repositories on GitHub for a keyword.
+
+You know those repositories you like and star into the abyss? Yes those, this cli tool will help you do a fuzzy search on them. You can search any GitHub user's starred repositories by providing their handle only.
+
+This tool will cache the results locally so that you don't risk abusing the API requests limit.
 
 ## Installation
 
@@ -41,6 +45,33 @@ starred_search
 
     --find <keyword>
         The keyword you want to search for. Example: es6
+```
+
+### Example output
+
+```
+starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6'
+
+🕵    INFO: Searching for "es6" in "link-'s" starred catalogue
+⚠️    INFO:: Serving search results from cache
+{
+  repo_name: 'lukehoban/es6features',
+  repo_description: 'Overview of ECMAScript 6 features',
+  repo_url: 'https://github.com/lukehoban/es6features',
+  repo_stars: 27640
+}
+{
+  repo_name: 'google/sa360-flightsfeed',
+  repo_description: 'Generate SA360 compatible feeds for airlines on BigQuery  :rocket:',
+  repo_url: 'https://github.com/google/sa360-flightsfeed',
+  repo_stars: 8
+}
+{
+  repo_name: 'DrkSephy/es6-cheatsheet',
+  repo_description: 'ES2015 [ES6] cheatsheet containing tips, tricks, best practices and code snippets',
+  repo_url: 'https://github.com/DrkSephy/es6-cheatsheet',
+  repo_stars: 11408
+}
 ```
 
 ## Release History
