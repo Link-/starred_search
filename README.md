@@ -5,7 +5,7 @@ You know those repositories you like and star into the abyss? Yes those, this cl
 
 This tool will cache the results locally so that you don't risk abusing the API requests limit.
 
-!["Starred Search Demo"](./_assets/demo.gif)
+!["Starred Search Demo"](./_assets/demo_v2.gif)
 
 ## Installation
 
