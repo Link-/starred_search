@@ -154,15 +154,16 @@ const search = (options) => {
       });
       const results = searcher.search(options.findParam);
       // Display the results
+      let resultsArray = []
       results.forEach((item) => {
-        let output = {
+        resultsArray.push({
           repo_name: item.full_name,
           repo_description: item.description,
           repo_url: item.html_url,
           repo_stars: item.stargazers_count
-        }
-        console.log(JSON.stringify(output, null, 2));
+        })
       });
+      console.log(JSON.stringify(resultsArray, null, 2));
     });
 }
 
