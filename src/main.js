@@ -116,7 +116,7 @@ const fetch_starred_repos = (options, pages) => {
  * @param {*} options 
  */
 const search = (options) => {
-  console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" in "${options.user}'s" starred catalogue`));
+  (options.verbose) ? console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" in "${options.user}'s" starred catalogue`)) : null;
   validate_parameters(options);
 
   return calculate_pages(options)
@@ -131,7 +131,7 @@ const search = (options) => {
       let cacheHash = MurmurHash3(options.user).hash(pages.number_of_pages).result();
       let cache = flatCache.load(`${cacheHash}`, path.resolve(options.cacheDir));
       if (cache._persisted.data === undefined || Object.keys(cache._persisted).length == 0) {
-        console.log(chalk.bold.green('✅    INFO:: Cache is empty, fetching data from GitHub'));
+        (options.verbose) ? console.log(chalk.bold.green('✅    INFO:: Cache is empty, fetching data from GitHub')) : null;
         return fetch_starred_repos(options, pages)
           .then((data) => {
             cache.setKey('data', data);
@@ -139,7 +139,7 @@ const search = (options) => {
             return data;
           });
       } else {
-        console.log(chalk.bold.red('⚠️    INFO:: Serving search results from cache'));
+        (options.verbose) ? console.log(chalk.bold.red('⚠️    INFO:: Serving search results from cache')) : null;
         return cache.getKey('data');
       }
     })
