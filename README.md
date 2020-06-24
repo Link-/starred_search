@@ -48,36 +48,95 @@ starred_search
 
     --find <keyword>
         The keyword you want to search for. Example: es6
+
+    --verbose
+        Outputs debugging log
 ```
 
 ### Example output
 
+**Non-verbose Output:**
 ```
-starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6'
+$: starred_search --user 'link-' --find 'es6'
+
+[
+  {
+    "repo_name": "lukehoban/es6features",
+    "repo_description": "Overview of ECMAScript 6 features",
+    "repo_url": "https://github.com/lukehoban/es6features",
+    "repo_stars": 27672
+  },
+  {
+    "repo_name": "google/sa360-flightsfeed",
+    "repo_description": "Generate SA360 compatible feeds for airlines on BigQuery  :rocket:",
+    "repo_url": "https://github.com/google/sa360-flightsfeed",
+    "repo_stars": 8
+  },
+  {
+    "repo_name": "DrkSephy/es6-cheatsheet",
+    "repo_description": "ES2015 [ES6] cheatsheet containing tips, tricks, best practices and code snippets",
+    "repo_url": "https://github.com/DrkSephy/es6-cheatsheet",
+    "repo_stars": 11410
+  }
+]
+```
+
+**Verbose Output:**
+```
+$: starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6' --verbose
 
 🕵    INFO: Searching for "es6" in "link-'s" starred catalogue
 ⚠️    INFO:: Serving search results from cache
+[
+  {
+    "repo_name": "lukehoban/es6features",
+    "repo_description": "Overview of ECMAScript 6 features",
+    "repo_url": "https://github.com/lukehoban/es6features",
+    "repo_stars": 27672
+  },
+  {
+    "repo_name": "google/sa360-flightsfeed",
+    "repo_description": "Generate SA360 compatible feeds for airlines on BigQuery  :rocket:",
+    "repo_url": "https://github.com/google/sa360-flightsfeed",
+    "repo_stars": 8
+  },
+  {
+    "repo_name": "DrkSephy/es6-cheatsheet",
+    "repo_description": "ES2015 [ES6] cheatsheet containing tips, tricks, best practices and code snippets",
+    "repo_url": "https://github.com/DrkSephy/es6-cheatsheet",
+    "repo_stars": 11410
+  }
+]
+```
+
+**Parsing the output with jq**
+You can pipe the standard output to be handled by tools like [jq](https://stedolan.github.io/jq/) for more magic:
+```
+# Return the first search result only
+$: starred_search --user 'link-' -f 'es6' | jq '.[0]'
+
 {
-  repo_name: 'lukehoban/es6features',
-  repo_description: 'Overview of ECMAScript 6 features',
-  repo_url: 'https://github.com/lukehoban/es6features',
-  repo_stars: 27640
+  "repo_name": "lukehoban/es6features",
+  "repo_description": "Overview of ECMAScript 6 features",
+  "repo_url": "https://github.com/lukehoban/es6features",
+  "repo_stars": 27672
 }
-{
-  repo_name: 'google/sa360-flightsfeed',
-  repo_description: 'Generate SA360 compatible feeds for airlines on BigQuery  :rocket:',
-  repo_url: 'https://github.com/google/sa360-flightsfeed',
-  repo_stars: 8
-}
-{
-  repo_name: 'DrkSephy/es6-cheatsheet',
-  repo_description: 'ES2015 [ES6] cheatsheet containing tips, tricks, best practices and code snippets',
-  repo_url: 'https://github.com/DrkSephy/es6-cheatsheet',
-  repo_stars: 11408
-}
+
+# Return repo_name of every result element
+starred_search --user 'link-' -f 'es6' | jq 'map(.repo_name)'
+
+[
+  "lukehoban/es6features",
+  "google/sa360-flightsfeed",
+  "DrkSephy/es6-cheatsheet"
+]
 ```
 
 ## Release History
 
-* 0.0.1
-    * Work in progress
+* 0.1.5
+  * Add verbose flag
+  * Fix output to return valid JSON
+  * Fix output to return results in an array instead of separated objects
+* 0.1.0
+  * Basic search
