@@ -161,7 +161,7 @@ const search = (options) => {
           repo_url: item.html_url,
           repo_stars: item.stargazers_count
         }
-        console.log(output);
+        console.log(JSON.stringify(output, null, 2));
       });
     });
 }
