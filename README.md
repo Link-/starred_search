@@ -1,6 +1,8 @@
 # starred_search
 > Search your starred repositories on GitHub for a keyword.
 
+_Notice: This project is still in `alpha` and the API might change without notice. Update only after reviewing the changelog for breaking changes._
+
 You know those repositories you like and star into the abyss? Yes those, this cli tool will help you do a fuzzy search on them. You can search any GitHub user's starred repositories by providing their handle only.
 
 This tool will cache the results locally so that you don't risk abusing the API requests limit.
@@ -11,7 +13,7 @@ This tool will cache the results locally so that you don't risk abusing the API 
 
 ### Minimum Requirements
 
-- [ ] Node **v12.x.x+**
+- Node **v12.x.x+**
 
 ### Setup 
 
@@ -40,16 +42,16 @@ stars -f 'es6'
 
 ```
 starred_search
-    --user <handle>
+    -u, --user <handle>
         Any GitHub handle. Example: link-
 
-    --cache-dir <directory>
+    -c, --cache-dir <directory>
         Directory you want to store the cache file in. Example: /tmp/.cache
 
-    --find <keyword>
+    -f, --find <keyword>
         The keyword you want to search for. Example: es6
 
-    --verbose
+    -v, --verbose
         Outputs debugging log
 ```
 
@@ -113,7 +115,7 @@ $: starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6' --verbos
 You can pipe the standard output to be handled by tools like [jq](https://stedolan.github.io/jq/) for more magic:
 ```
 # Return the first search result only
-$: starred_search --user 'link-' -f 'es6' | jq '.[0]'
+$: starred_search -u 'link-' -f 'es6' | jq '.[0]'
 
 {
   "repo_name": "lukehoban/es6features",
@@ -123,7 +125,7 @@ $: starred_search --user 'link-' -f 'es6' | jq '.[0]'
 }
 
 # Return repo_name of every result element
-starred_search --user 'link-' -f 'es6' | jq 'map(.repo_name)'
+starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 
 [
   "lukehoban/es6features",
@@ -134,9 +136,12 @@ starred_search --user 'link-' -f 'es6' | jq 'map(.repo_name)'
 
 ## Release History
 
+* 0.1.6
+  * Added aliases to documentation
 * 0.1.5
+  * **API BREAKING CHANGES**
   * Add verbose flag
   * Fix output to return valid JSON
   * Fix output to return results in an array instead of separated objects
-* 0.1.0
-  * Basic search
+* 0.1.0 - 0.1.4
+  * Basic functionality
