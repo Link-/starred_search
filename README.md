@@ -42,6 +42,9 @@ stars -f 'es6'
 
 ```
 starred_search
+    -h, --help
+        Show this message and exit.
+
     -u, --user <handle>
         Any GitHub handle. Example: link-
 
@@ -136,6 +139,8 @@ starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 
 ## Release History
 
+* 0.1.7
+  * Added -h, --help option
 * 0.1.6
   * Added aliases to documentation
 * 0.1.5
