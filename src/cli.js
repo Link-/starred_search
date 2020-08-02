@@ -44,7 +44,7 @@ const parseArgs = (rawArgs) => {
     help: args['--help'],
     user: args['--user'],
     findParam: args['--find'],
-    cacheDir: args['--cache-dir'] || '../.cache',
+    cacheDir: args['--cache-dir'] || '.cache',
     verbose: args['--verbose'] || false
   }
 }
