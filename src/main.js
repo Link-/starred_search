@@ -152,18 +152,19 @@ const search = (options) => {
       const searcher = new FuzzySearch(data.flat(), ['full_name', 'description', 'homepage'], {
         caseSensitive: false,
       });
-      const results = searcher.search(options.findParam);
-      // Display the results
-      let resultsArray = []
-      results.forEach((item) => {
-        resultsArray.push({
+      let results = searcher.search(options.findParam)
+      // Limit the search results
+      results.splice(options.limit)
+      // Extract from the results the relevant information only
+      results = results.map(item => {
+        return {
           repo_name: item.full_name,
           repo_description: item.description,
           repo_url: item.html_url,
           repo_stars: item.stargazers_count
-        })
-      });
-      console.log(JSON.stringify(resultsArray, null, 2));
+        }
+      })
+      console.log(JSON.stringify(results, null, 2));
     });
 }
 
