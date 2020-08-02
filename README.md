@@ -141,6 +141,7 @@ starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 
 * 0.1.7
   * Added -h, --help option
+  * Added -l, --limit option to limit the search results
 * 0.1.6
   * Added aliases to documentation
 * 0.1.5
