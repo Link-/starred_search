@@ -19,6 +19,9 @@ Options:
   -f, --find <keyword>
     The keyword you want to search for. Example: es6
 
+  -l, --limit <number>
+    Limit the search results to the specified number. Default is 10
+    
   -v, --verbose
     Outputs debugging log
 `
@@ -31,12 +34,14 @@ const parseArgs = (rawArgs) => {
       '--user': String,
       '--find': String,
       '--cache-dir': String,
+      '--limit': Number,
       '--verbose': Boolean,
       // Aliases
       '-h': '--help',
       '-u': '--user',
       '-f': '--find',
       '-c': '--cache-dir',
+      '-l': '--limit',
       '-v': '--verbose'
     }
   )
@@ -45,6 +50,7 @@ const parseArgs = (rawArgs) => {
     user: args['--user'],
     findParam: args['--find'],
     cacheDir: args['--cache-dir'] || '.cache',
+    limit: args['--limit'] || 10,
     verbose: args['--verbose'] || false
   }
 }
