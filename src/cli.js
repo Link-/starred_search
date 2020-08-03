@@ -1,5 +1,6 @@
 import arg from 'arg'
 const main = require('./main.js');
+const pkg = require('../package.json');
 
 const help = `
 Usage: starred_search [OPTIONS] [ARGS]...
@@ -22,8 +23,11 @@ Options:
   -l, --limit <number>
     Limit the search results to the specified number. Default is 10
     
-  -v, --verbose
+  -V, --verbose
     Outputs debugging log
+
+  -v, --version
+    Outputs release version
 `
 
 const parseArgs = (rawArgs) => {
@@ -36,13 +40,15 @@ const parseArgs = (rawArgs) => {
       '--cache-dir': String,
       '--limit': Number,
       '--verbose': Boolean,
+      '--version': Boolean,
       // Aliases
       '-h': '--help',
       '-u': '--user',
       '-f': '--find',
       '-c': '--cache-dir',
       '-l': '--limit',
-      '-v': '--verbose'
+      '-V': '--verbose',
+      '-v': '--version'
     }
   )
   return {
@@ -51,15 +57,22 @@ const parseArgs = (rawArgs) => {
     findParam: args['--find'],
     cacheDir: args['--cache-dir'] || '.cache',
     limit: args['--limit'] || 10,
-    verbose: args['--verbose'] || false
+    verbose: args['--verbose'] || false,
+    version: args['--version'] || false,
   }
 }
 
 export const cli = (args) => {
   let options = parseArgs(args)
 
+  // Display commands guide
   if (options.help) {
     console.log(help)
+    return
+  }
+  // Display version
+  if (options.version) {
+    console.log(pkg.version)
     return
   }
 
