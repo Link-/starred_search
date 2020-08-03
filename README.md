@@ -139,6 +139,9 @@ starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 
 ## Release History
 
+* 0.1.8
+  * Change alias for --verbose from -v to -V
+  * Add -v, --version option
 * 0.1.7
   * Added -h, --help option
   * Added -l, --limit option to limit the search results
