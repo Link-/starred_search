@@ -41,21 +41,31 @@ stars -f 'es6'
 ## Usage
 
 ```
-starred_search
-    -h, --help
-        Show this message and exit.
+Usage: starred_search [OPTIONS] [ARGS]...
 
-    -u, --user <handle>
-        Any GitHub handle. Example: link-
+  Search your or any other user's starred repositories on GitHub for a keyword.
 
-    -c, --cache-dir <directory>
-        Directory you want to store the cache file in. Example: /tmp/.cache
+Options:
+  -h, --help
+    Show this message and exit.
+  
+  -u, --user <handle>
+    Any GitHub handle. Example: link-
 
-    -f, --find <keyword>
-        The keyword you want to search for. Example: es6
+  -c, --cache-dir <directory>
+    Directory you want to store the cache file in. Example: /tmp/.cache
 
-    -v, --verbose
-        Outputs debugging log
+  -f, --find <keyword>
+    The keyword you want to search for. Example: es6
+
+  -l, --limit <number>
+    Limit the search results to the specified number. Default is 10
+    
+  -V, --verbose
+    Outputs debugging log
+
+  -v, --version
+    Outputs release version
 ```
 
 ### Example output
@@ -140,6 +150,7 @@ starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 ## Release History
 
 * 0.1.8
+  * **API BREAKING CHANGES**
   * Change alias for --verbose from -v to -V
   * Add -v, --version option
 * 0.1.7
