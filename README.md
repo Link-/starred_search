@@ -1,6 +1,8 @@
 # starred_search
 > Search your starred repositories on GitHub for a keyword.
 
+![npm](https://img.shields.io/npm/v/starred_search?style=flat-square) ![npm](https://img.shields.io/npm/dm/starred_search?style=flat-square) ![GitHub](https://img.shields.io/github/license/link-/starred_search?style=flat-square)
+
 _Notice: This project is still in `alpha` and the API might change without notice. Update only after reviewing the changelog for breaking changes._
 
 You know those repositories you like and star into the abyss? Yes those, this cli tool will help you do a fuzzy search on them. You can search any GitHub user's starred repositories by providing their handle only.
