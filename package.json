@@ -28,15 +28,12 @@
   "license": "ISC",
   "dependencies": {
     "arg": "^4.1.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "chalk": "^4.1.0",
     "esm": "^3.2.25",
     "flat-cache": "^2.0.1",
     "fuzzy-search": "^3.2.1",
     "imurmurhash": "^0.1.4"
   },
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^7.2.0"
-  }
+  "devDependencies": {}
 }
