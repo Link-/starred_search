@@ -2,8 +2,8 @@ const axios = require('axios');
 const path = require('path');
 const chalk = require('chalk');
 const flatCache = require('flat-cache');
+const MiniSearch = require('minisearch');
 const MurmurHash3 = require('imurmurhash');
-const FuzzySearch = require('fuzzy-search');
 
 // GitHub's API endpoint
 const gh_starred_endpoint = 'https://api.github.com/users/{{USER}}/starred';
@@ -116,7 +116,7 @@ const fetch_starred_repos = (options, pages) => {
  * @param {*} options 
  */
 const search = (options) => {
-  (options.verbose) ? console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" in "${options.user}'s" starred catalogue`)) : null;
+  (options.verbose) ? console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" in "${options.user}"'s starred catalogue`)) : null;
   validate_parameters(options);
 
   return calculate_pages(options)
@@ -146,22 +146,26 @@ const search = (options) => {
     .then((data) => {
       /**
        * First we flatten the data array (it's 2 dimentional because of pagination)
-       * then we do a fuzzy search only in the 'full_name, description and homepage'
-       * fields.
+       * then we do a full-text search only in the 'full_name, 
+       * description and homepage' fields.
        */
-      const searcher = new FuzzySearch(data.flat(), ['full_name', 'description', 'homepage'], {
-        caseSensitive: false,
+      const searcher = new MiniSearch({
+        fields: ['full_name', 'description', 'homepage'],
+        storeFields: ['full_name', 'description', 'homepage', 'forks', 'stargazers_count']
       });
-      let results = searcher.search(options.findParam)
+      searcher.addAll(data.flat());
+      let results = searcher.search(options.findParam);
       // Limit the search results
-      results.splice(options.limit)
+      results.splice(options.limit);
       // Extract from the results the relevant information only
       results = results.map(item => {
         return {
           repo_name: item.full_name,
           repo_description: item.description,
           repo_url: item.html_url,
-          repo_stars: item.stargazers_count
+          homepage: item.homepage,
+          repo_stars: item.stargazers_count,
+          forks: item.forks
         }
       })
       console.log(JSON.stringify(results, null, 2));
