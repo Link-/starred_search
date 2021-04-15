@@ -75,7 +75,7 @@ const fetch_page = (options, page_number) => {
     method: 'get',
     url: `${construct_api_url(options)}?per_page=${max_pages_per_request}&page=${page_number}`,
     headers: {
-      'User-Agent': 'Starred-Search Node.js module'
+      'User-Agent': 'starred_search Node.js module'
     },
   })
     .then((response) => {

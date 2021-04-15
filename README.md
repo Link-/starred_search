@@ -27,7 +27,7 @@ OS X & Linux:
 npm install starred_search -g
 
 # Usage
-starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6'
+starred_search --user 'link-' --find 'es6'
 ```
 
 I recommend that you create an alias in your shell to avoid repeating the required parameters.
@@ -36,7 +36,7 @@ Example alias in fish and bash:
 
 ```sh
 # Create an alias (this is temporary, you might want to make it permanent)
-alias stars="starred_search --user 'link-' --cache-dir '/tmp/.cache'"
+alias stars="starred_search --user 'link-'"
 
 # Then you can use it as:
 stars -f 'es6'
@@ -70,6 +70,9 @@ Options:
 
   -v, --version
     Outputs release version
+
+  -d, --debug
+    Outputs stack trace in case an exception is thrown
 ```
 
 ### Example output
@@ -156,6 +159,10 @@ starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 
 ## Release History
 
+- 0.1.9
+  - Add -d, --debug option
+  - Automatic discovery of cache directory based on OS
+  - Updates user agent for API requests
 - 0.1.8
   - **API BREAKING CHANGES**
   - Change alias for --verbose from -v to -V

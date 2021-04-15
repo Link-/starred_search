@@ -30,6 +30,9 @@ Options:
 
   -v, --version
     Outputs release version
+
+  -d, --debug
+    Outputs stack trace in case an exception is thrown
 `
 
 const parseArgs = (rawArgs) => {
