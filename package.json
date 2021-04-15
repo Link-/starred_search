@@ -34,7 +34,6 @@
     "chalk": "^4.1.0",
     "esm": "^3.2.25",
     "flat-cache": "^2.0.1",
-    "fuzzy-search": "^3.2.1",
     "imurmurhash": "^0.1.4",
     "minisearch": "^3.0.2"
   },
