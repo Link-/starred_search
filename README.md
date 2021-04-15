@@ -160,6 +160,7 @@ starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 ## Release History
 
 - 0.1.9
+  - Replaced the flaky fuzzy search with an enhanced full text search
   - Add -d, --debug option
   - Automatic discovery of cache directory based on OS
   - Updates user agent for API requests
