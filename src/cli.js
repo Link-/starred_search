@@ -1,4 +1,5 @@
-import arg from 'arg'
+const arg = require('arg');
+const chalk = require('chalk');
 const main = require('./main.js');
 const pkg = require('../package.json');
 
@@ -34,6 +35,7 @@ const parseArgs = (rawArgs) => {
   const args = arg(
     {
       // Types
+      '--debug': Boolean,
       '--help': Boolean,
       '--user': String,
       '--find': String,
@@ -42,6 +44,7 @@ const parseArgs = (rawArgs) => {
       '--verbose': Boolean,
       '--version': Boolean,
       // Aliases
+      '-d': '--debug',
       '-h': '--help',
       '-u': '--user',
       '-f': '--find',
@@ -52,6 +55,7 @@ const parseArgs = (rawArgs) => {
     }
   )
   return {
+    debug: args['--debug'] || false,
     help: args['--help'],
     user: args['--user'],
     findParam: args['--find'],
@@ -62,7 +66,7 @@ const parseArgs = (rawArgs) => {
   }
 }
 
-export const cli = (args) => {
+const cli = (args) => {
   let options = parseArgs(args)
 
   // Display commands guide
@@ -77,5 +81,15 @@ export const cli = (args) => {
   }
 
   // Trigger the search
-  main.search(options);
+  try {
+    main.search(options);
+  } catch (error) {
+    if (!options.debug) {
+      console.error(chalk.bold.red(`🛑  ${error.message}`));
+    } else {
+      console.error(error);
+    }
+  }
 }
+
+cli(process.argv);

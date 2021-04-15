@@ -4,7 +4,8 @@
   "description": "Search your starred repositories on GitHub for a keyword.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build": "ncc build src/cli.js -o bin && mv bin/index.js bin/starred_search"
   },
   "bin": {
     "@link-/starred_search": "bin/starred_search",
