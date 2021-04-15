@@ -1,7 +1,8 @@
 const arg = require('arg');
-const chalk = require('chalk');
 const main = require('./main.js');
 const pkg = require('../package.json');
+const chalk = require('chalk');
+const cachedir = require('cachedir');
 
 const help = `
 Usage: starred_search [OPTIONS] [ARGS]...
@@ -59,7 +60,7 @@ const parseArgs = (rawArgs) => {
     help: args['--help'],
     user: args['--user'],
     findParam: args['--find'],
-    cacheDir: args['--cache-dir'] || '.cache',
+    cacheDir: args['--cache-dir'] || cachedir('starredsearch'),
     limit: args['--limit'] || 10,
     verbose: args['--verbose'] || false,
     version: args['--version'] || false,

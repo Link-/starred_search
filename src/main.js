@@ -139,7 +139,7 @@ const search = (options) => {
             return data;
           });
       } else {
-        (options.verbose) ? console.log(chalk.bold.red('⚠️    INFO:: Serving search results from cache')) : null;
+        (options.verbose) ? console.log(chalk.bold.red(`⚠️    INFO:: Serving search results from cache ${options.cacheDir}`)) : null;
         return cache.getKey('data');
       }
     })
