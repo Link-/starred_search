@@ -2,7 +2,7 @@
 
 > Search your starred repositories on GitHub for a keyword.
 
-[![npm](https://img.shields.io/npm/v/starred_search?style=flat-square)](https://www.npmjs.com/package/starred_search) [![npm](https://img.shields.io/npm/dm/starred_search?style=flat-square)](https://www.npmjs.com/package/starred_search) ![GitHub](https://img.shields.io/github/license/link-/starred_search?style=flat-square)
+[![npm](https://img.shields.io/npm/v/starred_search?style=flat-square)](https://www.npmjs.com/package/starred_search) [![npm](https://img.shields.io/npm/dm/starred_search?style=flat-square)](https://www.npmjs.com/package/starred_search) [![GitHub](https://img.shields.io/github/license/link-/starred_search?style=flat-square)](./LICENSE)
 
 _Notice: This project is still in `alpha` and the API might change without notice. Update only after reviewing the changelog for breaking changes._
 
