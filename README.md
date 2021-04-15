@@ -1,7 +1,8 @@
 # starred_search
+
 > Search your starred repositories on GitHub for a keyword.
 
-![npm](https://img.shields.io/npm/v/starred_search?style=flat-square) ![npm](https://img.shields.io/npm/dm/starred_search?style=flat-square) ![GitHub](https://img.shields.io/github/license/link-/starred_search?style=flat-square)
+[![npm](https://img.shields.io/npm/v/starred_search?style=flat-square)](https://www.npmjs.com/package/starred_search) [![npm](https://img.shields.io/npm/dm/starred_search?style=flat-square)](https://www.npmjs.com/package/starred_search) ![GitHub](https://img.shields.io/github/license/link-/starred_search?style=flat-square)
 
 _Notice: This project is still in `alpha` and the API might change without notice. Update only after reviewing the changelog for breaking changes._
 
@@ -17,7 +18,7 @@ This tool will cache the results locally so that you don't risk abusing the API 
 
 - Node **v12.x.x+**
 
-### Setup 
+### Setup
 
 OS X & Linux:
 
@@ -29,10 +30,11 @@ npm install starred_search -g
 starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6'
 ```
 
-I recommend that you create an alias in your shell to avoid repeating the required parameters. 
+I recommend that you create an alias in your shell to avoid repeating the required parameters.
 
 Example alias in fish and bash:
-```
+
+```sh
 # Create an alias (this is temporary, you might want to make it permanent)
 alias stars="starred_search --user 'link-' --cache-dir '/tmp/.cache'"
 
@@ -42,7 +44,7 @@ stars -f 'es6'
 
 ## Usage
 
-```
+```sh
 Usage: starred_search [OPTIONS] [ARGS]...
 
   Search your or any other user's starred repositories on GitHub for a keyword.
@@ -50,7 +52,7 @@ Usage: starred_search [OPTIONS] [ARGS]...
 Options:
   -h, --help
     Show this message and exit.
-  
+
   -u, --user <handle>
     Any GitHub handle. Example: link-
 
@@ -62,7 +64,7 @@ Options:
 
   -l, --limit <number>
     Limit the search results to the specified number. Default is 10
-    
+
   -V, --verbose
     Outputs debugging log
 
@@ -73,7 +75,8 @@ Options:
 ### Example output
 
 **Non-verbose Output:**
-```
+
+```sh
 $: starred_search --user 'link-' --find 'es6'
 
 [
@@ -99,7 +102,8 @@ $: starred_search --user 'link-' --find 'es6'
 ```
 
 **Verbose Output:**
-```
+
+```sh
 $: starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6' --verbose
 
 🕵    INFO: Searching for "es6" in "link-'s" starred catalogue
@@ -128,7 +132,8 @@ $: starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6' --verbos
 
 **Parsing the output with jq**
 You can pipe the standard output to be handled by tools like [jq](https://stedolan.github.io/jq/) for more magic:
-```
+
+```sh
 # Return the first search result only
 $: starred_search -u 'link-' -f 'es6' | jq '.[0]'
 
@@ -151,19 +156,19 @@ starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 
 ## Release History
 
-* 0.1.8
-  * **API BREAKING CHANGES**
-  * Change alias for --verbose from -v to -V
-  * Add -v, --version option
-* 0.1.7
-  * Added -h, --help option
-  * Added -l, --limit option to limit the search results
-* 0.1.6
-  * Added aliases to documentation
-* 0.1.5
-  * **API BREAKING CHANGES**
-  * Add verbose flag
-  * Fix output to return valid JSON
-  * Fix output to return results in an array instead of separated objects
-* 0.1.0 - 0.1.4
-  * Basic functionality
+- 0.1.8
+  - **API BREAKING CHANGES**
+  - Change alias for --verbose from -v to -V
+  - Add -v, --version option
+- 0.1.7
+  - Added -h, --help option
+  - Added -l, --limit option to limit the search results
+- 0.1.6
+  - Added aliases to documentation
+- 0.1.5
+  - **API BREAKING CHANGES**
+  - Add verbose flag
+  - Fix output to return valid JSON
+  - Fix output to return results in an array instead of separated objects
+- 0.1.0 - 0.1.4
+  - Basic functionality
