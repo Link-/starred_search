@@ -22,8 +22,8 @@ const max_pages_per_request = 100;
  */
 const validate_parameters = (options) => {
   if (options.user === undefined || options.findParam === undefined) {
-      throw new Error('--user and --find parameters are both mandatory');
-    }
+    throw new Error('--user and --find parameters are both mandatory');
+  }
   else if (options.user == '' || options.findParam == '')
     throw new Error('--user and --find parameters are both mandatory');
 
@@ -59,7 +59,7 @@ const calculate_pages = (options) => {
       // The GitHub API handles pagine in the header item "link". More details 
       // about that here: https://developer.github.com/v3/#pagination
       pages['total'] = /page=(?<last_page>[0-9]+)>; rel="last"/.exec(response.headers['link']).groups['last_page'];
-      pages['number_of_pages'] = Math.ceil(pages['total']/100);
+      pages['number_of_pages'] = Math.ceil(pages['total'] / 100);
       return pages;
     });
 }
@@ -169,10 +169,10 @@ const search = (options) => {
 }
 
 module.exports = {
-  validate_parameters, 
-  construct_api_url, 
+  validate_parameters,
+  construct_api_url,
   calculate_pages,
-  fetch_page, 
+  fetch_page,
   fetch_starred_repos,
   search
 }
