@@ -1,6 +1,6 @@
 # starred_search
 
-> Search your starred repositories on GitHub for a keyword.
+> Search your starred ★ repositories on GitHub from your terminal
 
 [![npm](https://img.shields.io/npm/v/starred_search?style=flat-square)](https://www.npmjs.com/package/starred_search) [![npm](https://img.shields.io/npm/dm/starred_search?style=flat-square)](https://www.npmjs.com/package/starred_search) [![GitHub](https://img.shields.io/github/license/link-/starred_search?style=flat-square)](./LICENSE)
 
