@@ -24,8 +24,8 @@ This tool will cache the results locally so that you don't risk abusing the API 
 
 ### Minimum Requirements
 
-- Linux
-- macOS
+- 🐧 Linux
+- 🍎 macOS
 - 📦 Node `v12.x.x+`
 
 ### Setup
