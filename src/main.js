@@ -60,6 +60,7 @@ const calculate_pages = (options) => {
       // about that here: https://developer.github.com/v3/#pagination
       pages['total'] = /page=(?<last_page>[0-9]+)>; rel="last"/.exec(response.headers['link']).groups['last_page'];
       pages['number_of_pages'] = Math.ceil(pages['total'] / 100);
+      pages['etag'] = response.headers['etag'];
       return pages;
     });
 }
@@ -128,7 +129,7 @@ const search = (options) => {
        * 
        * New data will be fetched and persisted on disk for future searches.
        */
-      let cacheHash = MurmurHash3(options.user).hash(pages.number_of_pages).result();
+      let cacheHash = MurmurHash3(options.user).hash(pages.etag).result();
       let cache = flatCache.load(`${cacheHash}`, path.resolve(options.cacheDir));
       if (cache._persisted.data === undefined || Object.keys(cache._persisted).length == 0) {
         (options.verbose) ? console.log(chalk.bold.green('✅    INFO:: Cache is empty, fetching data from GitHub')) : null;
