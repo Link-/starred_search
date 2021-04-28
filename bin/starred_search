@@ -2367,7 +2367,7 @@ module.exports = (
 /***/ 272:
 /***/ (function(module) {
 
-module.exports = {"name":"starred_search","version":"0.1.9","description":"Search your starred repositories on GitHub for a keyword.","main":"src/cli.js","scripts":{"test":"mocha","build":"ncc build src/cli.js -o bin && mv bin/index.js bin/starred_search"},"bin":{"@link-/starred_search":"bin/starred_search","starred_search":"bin/starred_search"},"repository":{"type":"git","url":"git+https://github.com/Link-/starred_search.git"},"bugs":{"url":"https://github.com/Link-/starred_search/issues"},"homepage":"https://github.com/Link-/starred_search/#readme","keywords":["GitHub","repository","fuzzy search","starred"],"author":"Link-","license":"ISC","dependencies":{"arg":"^4.1.3","axios":"^0.21.1","cachedir":"^2.3.0","chalk":"^4.1.0","esm":"^3.2.25","flat-cache":"^2.0.1","imurmurhash":"^0.1.4","js2bin":"^1.0.7","minisearch":"^3.0.2"},"devDependencies":{"prettier":"^2.2.1"}};
+module.exports = {"name":"starred_search","version":"0.1.9","description":"Search your starred repositories on GitHub for a keyword.","main":"src/cli.js","scripts":{"test":"mocha","build":"ncc build src/cli.js -o bin && mv bin/index.js bin/starred_search"},"bin":{"@link-/starred_search":"bin/starred_search","starred_search":"bin/starred_search"},"repository":{"type":"git","url":"git+https://github.com/Link-/starred_search.git"},"bugs":{"url":"https://github.com/Link-/starred_search/issues"},"homepage":"https://github.com/Link-/starred_search/#readme","keywords":["GitHub","repository","fulltext search","starred","stargazers","cli","terminal","nodejs"],"author":"Link-","license":"ISC","dependencies":{"arg":"^4.1.3","axios":"^0.21.1","cachedir":"^2.3.0","chalk":"^4.1.0","esm":"^3.2.25","flat-cache":"^2.0.1","imurmurhash":"^0.1.4","minisearch":"^3.0.2"},"devDependencies":{"prettier":"^2.2.1"}};
 
 /***/ }),
 
@@ -5583,6 +5583,9 @@ function range(a, b, str) {
   var i = ai;
 
   if (ai >= 0 && bi > 0) {
+    if(a===b) {
+      return [ai, bi];
+    }
     begs = [];
     left = str.length;
 
@@ -8479,8 +8482,9 @@ var assert = __webpack_require__(357);
 var debug = __webpack_require__(149);
 
 // Create handlers that pass events from native requests
+var events = ["abort", "aborted", "connect", "error", "socket", "timeout"];
 var eventHandlers = Object.create(null);
-["abort", "aborted", "connect", "error", "socket", "timeout"].forEach(function (event) {
+events.forEach(function (event) {
   eventHandlers[event] = function (arg1, arg2, arg3) {
     this._redirectable.emit(event, arg1, arg2, arg3);
   };
@@ -8535,9 +8539,7 @@ RedirectableRequest.prototype = Object.create(Writable.prototype);
 
 RedirectableRequest.prototype.abort = function () {
   // Abort the internal request
-  this._currentRequest.removeAllListeners();
-  this._currentRequest.on("error", noop);
-  this._currentRequest.abort();
+  abortRequest(this._currentRequest);
 
   // Abort this request
   this.emit("abort");
@@ -8628,8 +8630,14 @@ RedirectableRequest.prototype.setTimeout = function (msecs, callback) {
     this.on("timeout", callback);
   }
 
+  function destroyOnTimeout(socket) {
+    socket.setTimeout(msecs);
+    socket.removeListener("timeout", socket.destroy);
+    socket.addListener("timeout", socket.destroy);
+  }
+
   // Sets up a timer to trigger a timeout event
-  function startTimer() {
+  function startTimer(socket) {
     if (self._timeout) {
       clearTimeout(self._timeout);
     }
@@ -8637,6 +8645,7 @@ RedirectableRequest.prototype.setTimeout = function (msecs, callback) {
       self.emit("timeout");
       clearTimer();
     }, msecs);
+    destroyOnTimeout(socket);
   }
 
   // Prevent a timeout from triggering
@@ -8652,12 +8661,13 @@ RedirectableRequest.prototype.setTimeout = function (msecs, callback) {
 
   // Start the timer when the socket is opened
   if (this.socket) {
-    startTimer();
+    startTimer(this.socket);
   }
   else {
     this._currentRequest.once("socket", startTimer);
   }
 
+  this.on("socket", destroyOnTimeout);
   this.once("response", clearTimer);
   this.once("error", clearTimer);
 
@@ -8736,11 +8746,8 @@ RedirectableRequest.prototype._performRequest = function () {
 
   // Set up event handlers
   request._redirectable = this;
-  for (var event in eventHandlers) {
-    /* istanbul ignore else */
-    if (event) {
-      request.on(event, eventHandlers[event]);
-    }
+  for (var e = 0; e < events.length; e++) {
+    request.on(events[e], eventHandlers[events[e]]);
   }
 
   // End a redirected request
@@ -8798,9 +8805,7 @@ RedirectableRequest.prototype._processResponse = function (response) {
   if (location && this._options.followRedirects !== false &&
       statusCode >= 300 && statusCode < 400) {
     // Abort the current request
-    this._currentRequest.removeAllListeners();
-    this._currentRequest.on("error", noop);
-    this._currentRequest.abort();
+    abortRequest(this._currentRequest);
     // Discard the remainder of the response to avoid waiting for data
     response.destroy();
 
@@ -8990,6 +8995,14 @@ function createErrorType(code, defaultMessage) {
   CustomError.prototype.name = "Error [" + code + "]";
   CustomError.prototype.code = code;
   return CustomError;
+}
+
+function abortRequest(request) {
+  for (var e = 0; e < events.length; e++) {
+    request.removeListener(events[e], eventHandlers[events[e]]);
+  }
+  request.on("error", noop);
+  request.abort();
 }
 
 // Exports
@@ -9774,7 +9787,7 @@ function supportsColor(haveStream, streamIsTTY) {
 	}
 
 	if ('CI' in env) {
-		if (['TRAVIS', 'CIRCLECI', 'APPVEYOR', 'GITLAB_CI'].some(sign => sign in env) || env.CI_NAME === 'codeship') {
+		if (['TRAVIS', 'CIRCLECI', 'APPVEYOR', 'GITLAB_CI', 'GITHUB_ACTIONS', 'BUILDKITE'].some(sign => sign in env) || env.CI_NAME === 'codeship') {
 			return 1;
 		}
 
@@ -9783,10 +9796,6 @@ function supportsColor(haveStream, streamIsTTY) {
 
 	if ('TEAMCITY_VERSION' in env) {
 		return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env.TEAMCITY_VERSION) ? 1 : 0;
-	}
-
-	if ('GITHUB_ACTIONS' in env) {
-		return 1;
 	}
 
 	if (env.COLORTERM === 'truecolor') {
@@ -11114,6 +11123,7 @@ const calculate_pages = (options) => {
       // about that here: https://developer.github.com/v3/#pagination
       pages['total'] = /page=(?<last_page>[0-9]+)>; rel="last"/.exec(response.headers['link']).groups['last_page'];
       pages['number_of_pages'] = Math.ceil(pages['total'] / 100);
+      pages['etag'] = response.headers['etag'];
       return pages;
     });
 }
@@ -11182,7 +11192,7 @@ const search = (options) => {
        * 
        * New data will be fetched and persisted on disk for future searches.
        */
-      let cacheHash = MurmurHash3(options.user).hash(pages.number_of_pages).result();
+      let cacheHash = MurmurHash3(options.user).hash(pages.etag).result();
       let cache = flatCache.load(`${cacheHash}`, path.resolve(options.cacheDir));
       if (cache._persisted.data === undefined || Object.keys(cache._persisted).length == 0) {
         (options.verbose) ? console.log(chalk.bold.green('✅    INFO:: Cache is empty, fetching data from GitHub')) : null;
