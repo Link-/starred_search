@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const arg = require('arg');
 const main = require('./main.js');
 const pkg = require('../package.json');

@@ -22,8 +22,12 @@
   "keywords": [
     "GitHub",
     "repository",
-    "fuzzy search",
-    "starred"
+    "fulltext search",
+    "starred",
+    "stargazers",
+    "cli",
+    "terminal",
+    "nodejs"
   ],
   "author": "Link-",
   "license": "ISC",

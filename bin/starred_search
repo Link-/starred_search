@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 module.exports =
 /******/ (function(modules, runtime) { // webpackBootstrap
 /******/ 	"use strict";
@@ -2366,7 +2367,7 @@ module.exports = (
 /***/ 272:
 /***/ (function(module) {
 
-module.exports = {"name":"starred_search","version":"0.1.9","description":"Search your starred repositories on GitHub for a keyword.","main":"index.js","scripts":{"test":"mocha","build":"ncc build src/cli.js -o bin && mv bin/index.js bin/starred_search"},"bin":{"@link-/starred_search":"bin/starred_search","starred_search":"bin/starred_search"},"repository":{"type":"git","url":"git+https://github.com/Link-/starred_search.git"},"bugs":{"url":"https://github.com/Link-/starred_search/issues"},"homepage":"https://github.com/Link-/starred_search/#readme","keywords":["GitHub","repository","fuzzy search","starred"],"author":"Link-","license":"ISC","dependencies":{"arg":"^4.1.3","axios":"^0.21.1","cachedir":"^2.3.0","chalk":"^4.1.0","esm":"^3.2.25","flat-cache":"^2.0.1","fuzzy-search":"^3.2.1","imurmurhash":"^0.1.4","minisearch":"^3.0.2"},"devDependencies":{"prettier":"^2.2.1"}};
+module.exports = {"name":"starred_search","version":"0.1.9","description":"Search your starred repositories on GitHub for a keyword.","main":"src/cli.js","scripts":{"test":"mocha","build":"ncc build src/cli.js -o bin && mv bin/index.js bin/starred_search"},"bin":{"@link-/starred_search":"bin/starred_search","starred_search":"bin/starred_search"},"repository":{"type":"git","url":"git+https://github.com/Link-/starred_search.git"},"bugs":{"url":"https://github.com/Link-/starred_search/issues"},"homepage":"https://github.com/Link-/starred_search/#readme","keywords":["GitHub","repository","fuzzy search","starred"],"author":"Link-","license":"ISC","dependencies":{"arg":"^4.1.3","axios":"^0.21.1","cachedir":"^2.3.0","chalk":"^4.1.0","esm":"^3.2.25","flat-cache":"^2.0.1","imurmurhash":"^0.1.4","js2bin":"^1.0.7","minisearch":"^3.0.2"},"devDependencies":{"prettier":"^2.2.1"}};
 
 /***/ }),
 
@@ -9175,13 +9176,6 @@ module.exports = (chalk, temporary) => {
 
 /***/ }),
 
-/***/ 811:
-/***/ (function(module) {
-
-!function(e,t){ true?module.exports=t():undefined}("undefined"!=typeof window?window:this,(function(){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=0)}([function(e,t,n){e.exports=n(1)},function(e,t,n){"use strict";function r(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}n.r(t);var o=function(){function e(){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,e)}var t,n,o;return t=e,o=[{key:"getDescendantProperty",value:function(t,n){var r,o,i,a,u,s,c=arguments.length>2&&void 0!==arguments[2]?arguments[2]:[];if(n){if(-1===(i=n.indexOf("."))?r=n:(r=n.slice(0,i),o=n.slice(i+1)),null!=(a=t[r]))if(o||"string"!=typeof a&&"number"!=typeof a)if("[object Array]"===Object.prototype.toString.call(a))for(u=0,s=a.length;u<s;u++)e.getDescendantProperty(a[u],o,c);else o&&e.getDescendantProperty(a,o,c);else c.push(a)}else c.push(t);return c}}],(n=null)&&r(t.prototype,n),o&&r(t,o),e}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}n.d(t,"default",(function(){return u}));var u=function(){function e(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:[],r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};i(this,e),Array.isArray(n)||(r=n,n=[]),this.haystack=t,this.keys=n,this.options=Object.assign({caseSensitive:!1,sort:!1},r)}var t,n,r;return t=e,r=[{key:"isMatch",value:function(e,t,n){e=String(e),t=String(t),n||(e=e.toLocaleLowerCase(),t=t.toLocaleLowerCase());for(var r=t.split(""),o=[],i=0,a=0;a<r.length;a++){var u=r[a];if(-1===(i=e.indexOf(u,i)))return!1;o.push(i),i++}return e===t?1:o.length>1?o[o.length-1]-o[0]+2:2+o[0]}}],(n=[{key:"search",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";if(""===t)return this.haystack;for(var n=[],r=0;r<this.haystack.length;r++){var i=this.haystack[r];if(0===this.keys.length){var a=e.isMatch(i,t,this.options.caseSensitive);a&&n.push({item:i,score:a})}else for(var u=0;u<this.keys.length;u++){for(var s=o.getDescendantProperty(i,this.keys[u]),c=!1,f=0;f<s.length;f++){var l=e.isMatch(s[f],t,this.options.caseSensitive);if(l){c=!0,n.push({item:i,score:l});break}}if(c)break}}return this.options.sort&&n.sort((function(e,t){return e.score-t.score})),n.map((function(e){return e.item}))}}])&&a(t.prototype,n),r&&a(t,r),e}()}]).default}));
-
-/***/ }),
-
 /***/ 812:
 /***/ (function(module) {
 
@@ -11064,7 +11058,6 @@ const chalk = __webpack_require__(640);
 const flatCache = __webpack_require__(924);
 const MiniSearch = __webpack_require__(391);
 const MurmurHash3 = __webpack_require__(879);
-const FuzzySearch = __webpack_require__(811);
 
 // GitHub's API endpoint
 const gh_starred_endpoint = 'https://api.github.com/users/{{USER}}/starred';
@@ -11177,7 +11170,7 @@ const fetch_starred_repos = (options, pages) => {
  * @param {*} options 
  */
 const search = (options) => {
-  (options.verbose) ? console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" in "${options.user}'s" starred catalogue`)) : null;
+  (options.verbose) ? console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" in "${options.user}"'s starred catalogue`)) : null;
   validate_parameters(options);
 
   return calculate_pages(options)
