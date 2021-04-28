@@ -1,26 +1,34 @@
-# starred_search
+```sh
+✴    ✴   ✴              ✴       ✴              ✴                ✴
+  ✴  _      ✴      ✴   ✴        _    ✴              ✴   ✴     _   ✴  
+ ___| |_ __ _ _✴__ _ __ ___  __| |    ___ ✴___  __ _ _✴__ ___| |__  
+/ __| __/ _` | '✴_| '__/ _ \/ _` |  ✴/ __|/ _ \/✴_` | '__/ __| '_ \✴
+\__ \ || (✴| |✴|  | | |  __/ (_| | ✴ \__ \  __/ (_| | | | (__| |✴| |✴
+|___/\__\__,_|_|  |_| ✴\___|\__,_|___|___/\___|\__✴_|_| ✴\___|_| |_|
+          ✴            ✴        |_____|      ✴       ✴               
+```
 
 > Search your starred ★ repositories on GitHub from your terminal
 
 [![npm](https://img.shields.io/npm/v/starred_search?style=flat-square)](https://www.npmjs.com/package/starred_search) [![npm](https://img.shields.io/npm/dm/starred_search?style=flat-square)](https://www.npmjs.com/package/starred_search) [![GitHub](https://img.shields.io/github/license/link-/starred_search?style=flat-square)](./LICENSE)
 
-_Notice: This project is still in `alpha` and the API might change without notice. Update only after reviewing the changelog for breaking changes._
-
 You know those repositories you like and star into the abyss? Yes those, this cli tool will help you do a fuzzy search on them. You can search any GitHub user's starred repositories by providing their handle only.
 
 This tool will cache the results locally so that you don't risk abusing the API requests limit.
 
-!["Starred Search Demo"](./_assets/demo_v2.gif)
+!["Starred Search Demo"](./_assets/starred_search.gif)
+
+**Notice:** This project is still in `alpha` and the API might change without notice. Update only after reviewing the changelog for breaking changes.
 
 ## Installation
 
 ### Minimum Requirements
 
-- Node **v12.x.x+**
+- Linux
+- macOS
+- 📦 Node `v12.x.x+`
 
 ### Setup
-
-OS X & Linux:
 
 ```sh
 # Install
@@ -75,12 +83,12 @@ Options:
     Outputs stack trace in case an exception is thrown
 ```
 
-### Example output
+### Examples
 
-**Non-verbose Output:**
+**Non-verbose output:**
 
 ```sh
-$: starred_search --user 'link-' --find 'es6'
+$ starred_search --user 'link-' --find 'es6'
 
 [
   {
@@ -104,10 +112,10 @@ $: starred_search --user 'link-' --find 'es6'
 ]
 ```
 
-**Verbose Output:**
+**Verbose output & override cache directory:**
 
 ```sh
-$: starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6' --verbose
+$ starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6' --verbose
 
 🕵    INFO: Searching for "es6" in "link-'s" starred catalogue
 ⚠️    INFO:: Serving search results from cache
@@ -138,7 +146,7 @@ You can pipe the standard output to be handled by tools like [jq](https://stedol
 
 ```sh
 # Return the first search result only
-$: starred_search -u 'link-' -f 'es6' | jq '.[0]'
+$ starred_search -u 'link-' -f 'es6' | jq '.[0]'
 
 {
   "repo_name": "lukehoban/es6features",
