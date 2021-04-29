@@ -30,7 +30,7 @@ jobs:
         RELEASE_VERSION: ${{ steps.tag_extraction.outputs.tag }}
       run: |
         echo $RELEASE_VERSION
-        npm version $RELEASE_VERSION
+        npm version $RELEASE_VERSION --no-git-tag-version
         echo ${{ steps.tag_extraction.outputs.tag }}
 
     - name: Push changes and tags
