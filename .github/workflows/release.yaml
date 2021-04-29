@@ -1,9 +1,12 @@
 name: Build & Release
 
 on:
-  push:
-    tags:
-      - '*.*.*'
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
 
 jobs:
   build-and-release:
@@ -21,25 +24,25 @@ jobs:
       run: |
         npm run build
 
-    - name: Get tag name
-      id: tag_extraction
-      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+    - name: Push new build
+      uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
+      with:
+        author_name: Link-
+        author_email: bassem@interop.link
+        message: 'Update build'
+        add: 'bin/starred_search'
 
     - name: Update version
-      env:
-        RELEASE_VERSION: ${{ steps.tag_extraction.outputs.tag }}
       run: |
-        echo $RELEASE_VERSION
-        npm version $RELEASE_VERSION --no-git-tag-version
-        echo ${{ steps.tag_extraction.outputs.tag }}
+        npm version ${{ github.event.inputs.name }}
 
-    - name: Push changes and tags
+    - name: Push new version and tag
       uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
       with:
         author_name: Link-
         author_email: bassem@interop.link
         message: 'Update version'
-        add: '["package.json", "bin/starred_search"]'
+        add: 'package.json'
 
     - name: Release
       uses: JS-DevTools/npm-publish@0f451a94170d1699fd50710966d48fb26194d939
