@@ -163,8 +163,8 @@ const search = (options) => {
         return {
           repo_name: item.full_name,
           repo_description: item.description,
-          repo_url: item.html_url,
-          homepage: item.homepage,
+          repo_url: `https://github.com/${item.full_name}`,
+          homepage: item.homepage ? item.homepage : "N.A",
           repo_stars: item.stargazers_count,
           forks: item.forks
         }
