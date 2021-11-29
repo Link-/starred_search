@@ -167,6 +167,9 @@ starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 
 ## Release History
 
+- 0.1.11
+  - Fix repo_url value to reference the Repository's GitHub URL
+  - Default homepage_url to `N.A`
 - 0.1.10
   - Add release workflow
   - Add [contributing guide](./CONTRIBUTING.md)
