@@ -167,31 +167,33 @@ starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 
 ## Release History
 
+- 0.1.12
+  - [x] Update packages to resolve security vulnerabilities
 - 0.1.11
-  - Fix repo_url value to reference the Repository's GitHub URL
-  - Default homepage_url to `N.A`
+  - [x] Fix `repo_url` value to reference the Repository's GitHub URL
+  - [x] Default homepage_url to `N.A`
 - 0.1.10
-  - Add release workflow
-  - Add [contributing guide](./CONTRIBUTING.md)
+  - [x] Add release workflow
+  - [x] Add [contributing guide](./CONTRIBUTING.md)
 - 0.1.9
-  - Replaced the flaky fuzzy search with an enhanced full text search
-  - Updated cache invalidation logic to rely on etags
-  - Add -d, --debug option
-  - Automatic discovery of cache directory based on OS
-  - Updates user agent for API requests
+  - [x] Replaced the flaky fuzzy search with an enhanced full text search
+  - [x] Updated cache invalidation logic to rely on etags
+  - [x] Add -d, --debug option
+  - [x] Automatic discovery of cache directory based on OS
+  - [x] Updates user agent for API requests
 - 0.1.8
-  - **API BREAKING CHANGES**
-  - Change alias for --verbose from -v to -V
-  - Add -v, --version option
+  - [x] **API BREAKING CHANGES**
+  - [x] Change alias for --verbose from -v to -V
+  - [x] Add -v, --version option
 - 0.1.7
-  - Added -h, --help option
-  - Added -l, --limit option to limit the search results
+  - [x] Added -h, --help option
+  - [x] Added -l, --limit option to limit the search results
 - 0.1.6
-  - Added aliases to documentation
+  - [x] Added aliases to documentation
 - 0.1.5
-  - **API BREAKING CHANGES**
-  - Add verbose flag
-  - Fix output to return valid JSON
-  - Fix output to return results in an array instead of separated objects
+  - [x] **API BREAKING CHANGES**
+  - [x] Add verbose flag
+  - [x] Fix output to return valid JSON
+  - [x] Fix output to return results in an array instead of separated objects
 - 0.1.0 - 0.1.4
-  - Basic functionality
+  - [x] Basic functionality

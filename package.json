@@ -1,6 +1,6 @@
 {
   "name": "starred_search",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Search your starred repositories on GitHub for a keyword.",
   "main": "src/cli.js",
   "scripts": {
@@ -43,6 +43,8 @@
     "minisearch": "^3.0.2"
   },
   "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
     "prettier": "^2.2.1"
   }
 }
