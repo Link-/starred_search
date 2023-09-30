@@ -41,6 +41,22 @@ const construct_api_url = (options) => {
 }
 
 /**
+ * generate request headers for github
+ * 
+ * @param {*} options 
+ */
+const get_request_headers = (options) => {
+  let headers = {
+    'User-Agent': 'Starred-Search Node.js module',
+  }
+
+  if (options.ghAccessToken) {
+    headers['Authorization'] = `Bearer ${options.ghAccessToken}`
+  }
+  return headers;
+}
+
+/**
  * Parses the `link` response header to calculate the number of pages
  * based on a maximum of 100 items per page
  * 
@@ -50,9 +66,7 @@ const calculate_pages = (options) => {
   return axios({
     method: 'get',
     url: `${construct_api_url(options)}?per_page=1`,
-    headers: {
-      'User-Agent': 'Starred-Search Node.js module'
-    },
+    headers: get_request_headers(options),
   })
     .then((response) => {
       let pages = {};
@@ -75,9 +89,7 @@ const fetch_page = (options, page_number) => {
   return axios({
     method: 'get',
     url: `${construct_api_url(options)}?per_page=${max_pages_per_request}&page=${page_number}`,
-    headers: {
-      'User-Agent': 'starred_search Node.js module'
-    },
+    headers: get_request_headers(options),
   })
     .then((response) => {
       return response.data;

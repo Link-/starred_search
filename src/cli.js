@@ -34,6 +34,9 @@ Options:
 
   -d, --debug
     Outputs stack trace in case an exception is thrown
+  
+  -t, --token
+  A github access token to be used in sending requests. generate one from here (https://github.com/settings/tokens?type=beta)
 `
 
 const parseArgs = (rawArgs) => {
@@ -48,6 +51,7 @@ const parseArgs = (rawArgs) => {
       '--limit': Number,
       '--verbose': Boolean,
       '--version': Boolean,
+      '--token': String,
       // Aliases
       '-d': '--debug',
       '-h': '--help',
@@ -56,7 +60,8 @@ const parseArgs = (rawArgs) => {
       '-c': '--cache-dir',
       '-l': '--limit',
       '-V': '--verbose',
-      '-v': '--version'
+      '-v': '--version',
+      '-t': '--token',
     }
   )
   return {
@@ -68,6 +73,7 @@ const parseArgs = (rawArgs) => {
     limit: args['--limit'] || 10,
     verbose: args['--verbose'] || false,
     version: args['--version'] || false,
+    ghAccessToken: args['--token'],
   }
 }
 
