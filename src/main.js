@@ -41,6 +41,22 @@ const construct_api_url = (options) => {
 }
 
 /**
+ * generate request headers for github
+ * 
+ * @param {*} options 
+ */
+const get_request_headers = (options) => {
+  let headers = {
+    'User-Agent': 'Starred-Search Node.js module',
+  }
+
+  if (options.ghtoken) {
+    headers['Authorization'] = `Bearer ${options.ghtoken}`
+  }
+  return headers;
+}
+
+/**
  * Parses the `link` response header to calculate the number of pages
  * based on a maximum of 100 items per page
  * 
@@ -50,9 +66,7 @@ const calculate_pages = (options) => {
   return axios({
     method: 'get',
     url: `${construct_api_url(options)}?per_page=1`,
-    headers: {
-      'User-Agent': 'Starred-Search Node.js module'
-    },
+    headers: get_request_headers(options),
   })
     .then((response) => {
       let pages = {};
@@ -75,9 +89,7 @@ const fetch_page = (options, page_number) => {
   return axios({
     method: 'get',
     url: `${construct_api_url(options)}?per_page=${max_pages_per_request}&page=${page_number}`,
-    headers: {
-      'User-Agent': 'starred_search Node.js module'
-    },
+    headers: get_request_headers(options),
   })
     .then((response) => {
       return response.data;
@@ -132,7 +144,7 @@ const search = (options) => {
       let cacheHash = MurmurHash3(options.user).hash(pages.etag).result();
       let cache = flatCache.load(`${cacheHash}`, path.resolve(options.cacheDir));
       if (cache._persisted.data === undefined || Object.keys(cache._persisted).length == 0) {
-        (options.verbose) ? console.log(chalk.bold.green('✅    INFO:: Cache is empty, fetching data from GitHub')) : null;
+        (options.verbose) ? console.log(chalk.bold.green('✅    INFO: Cache is empty, fetching data from GitHub')) : null;
         return fetch_starred_repos(options, pages)
           .then((data) => {
             cache.setKey('data', data);
@@ -140,7 +152,7 @@ const search = (options) => {
             return data;
           });
       } else {
-        (options.verbose) ? console.log(chalk.bold.red(`⚠️    INFO:: Serving search results from cache ${options.cacheDir}`)) : null;
+        (options.verbose) ? console.log(chalk.bold.red(`⚠️    INFO: Serving search results from cache ${options.cacheDir}`)) : null;
         return cache.getKey('data');
       }
     })
