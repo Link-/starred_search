@@ -5,7 +5,8 @@
   "main": "src/cli.js",
   "scripts": {
     "test": "mocha",
-    "build": "ncc build src/cli.js -o bin && mv bin/index.js bin/starred_search"
+    "build": "ncc build src/cli.js -o bin && mv bin/index.js bin/starred_search",
+    "all": "npm test && npm run build"
   },
   "bin": {
     "@link-/starred_search": "bin/starred_search",

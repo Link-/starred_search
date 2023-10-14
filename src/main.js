@@ -130,10 +130,11 @@ const fetch_starred_repos = (options, pages) => {
  */
 const search = (options) => {
   let organizationLog = '';
-  if (options.organization) {
-    organizationLog = `(belonging to org: ${options.organization})`;
+  if (options.verbose) {
+    organizationLog = options.organization ? `(belonging to org: ${options.organization})` : '';
+    console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" ${organizationLog} in "${options.user}"'s starred catalogue`))
   }
-  (options.verbose) ? console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" ${organizationLog} in "${options.user}"'s starred catalogue`)) : null;
+
   validate_parameters(options);
 
   return calculate_pages(options)
@@ -168,12 +169,12 @@ const search = (options) => {
        */
       let flattenedData = data.flat();
       
-      // if the organization option was passed, only filter results relevant to that org
+      // if the organization option was passed, run the search on the repos
+      // belonging to that organization only
       if (options.organization) {
-        flattenedData = flattenedData.filter(repo => 
-            repo.owner.type == "Organization"
-            && repo.owner.login.toLowerCase() == options.organization.toLowerCase()
-          );
+        flattenedData = flattenedData.filter(repo =>
+          repo.owner.type == "Organization" && repo.owner.login.toLowerCase() == options.organization.toLowerCase()
+        );
       }
 
       const searcher = new MiniSearch({
