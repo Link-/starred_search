@@ -30,7 +30,7 @@ jobs:
 
     - name: Update version
       run: |
-        npm version ${{ github.event.inputs.version }} --allow-same-version
+        npm version ${{ github.event.inputs.version }} --allow-same-version --no-git-tag-version
 
     - name: Commit package.json
       uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
