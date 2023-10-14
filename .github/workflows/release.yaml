@@ -53,7 +53,7 @@ jobs:
         author_email: 568794+Link-@users.noreply.github.com
         message: 'Update version'
         add: 'package.json'
-        new_branch: ${{ github.event.inputs.version }}
+        branch: ${{ github.event.inputs.version }}
         push: false
 
     - name: Create PR
