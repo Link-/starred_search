@@ -38,6 +38,8 @@ jobs:
         author_email: 568794+Link-@users.noreply.github.com
         message: 'Update build'
         add: 'bin/starred_search'
+        new_branch: ${{ github.event.inputs.version }}
+        push: false
 
     - name: Update version
       run: |
@@ -50,26 +52,20 @@ jobs:
         author_email: 568794+Link-@users.noreply.github.com
         message: 'Update version'
         add: 'package.json'
+        new_branch: ${{ github.event.inputs.version }}
+        push: false
 
-    - name: Tag version
-      run: |
-        git tag ${{ github.event.inputs.version }}
-
-    - name: Push tag
-      uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
+    - name: Create PR
+      uses: peter-evans/create-pull-request@v5
       with:
-        author_name: Link-
-        author_email: 568794+Link-@users.noreply.github.com
-
-    - uses: actions/create-release@master
-      name: Create ${{ github.event.inputs.version }} Release
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: "${{ github.event.inputs.version }}"
-        release_name: "${{ github.event.inputs.version }}"
-
-    - name: Release
-      uses: JS-DevTools/npm-publish@0f451a94170d1699fd50710966d48fb26194d939
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: 'Release ${{ github.event.inputs.version }}'
+        title: 'Release ${{ github.event.inputs.version }}'
+        branch: ${{ github.event.inputs.version }}
+        delete-branch: true
+        labels: |
+          release
+          ignore-for-release
+        reviewers: 'Link-'
+        assignees: 'Link-'
+        draft: false
