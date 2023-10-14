@@ -129,7 +129,12 @@ const fetch_starred_repos = (options, pages) => {
  * @param {*} options 
  */
 const search = (options) => {
-  (options.verbose) ? console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" in "${options.user}"'s starred catalogue`)) : null;
+  let organizationLog = '';
+  if (options.verbose) {
+    organizationLog = options.organization ? `(belonging to org: ${options.organization})` : '';
+    console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" ${organizationLog} in "${options.user}"'s starred catalogue`))
+  }
+
   validate_parameters(options);
 
   return calculate_pages(options)
@@ -162,11 +167,21 @@ const search = (options) => {
        * then we do a full-text search only in the 'full_name, 
        * description and homepage' fields.
        */
+      let flattenedData = data.flat();
+      
+      // if the organization option was passed, run the search on the repos
+      // belonging to that organization only
+      if (options.organization) {
+        flattenedData = flattenedData.filter(repo =>
+          repo.owner.type == "Organization" && repo.owner.login.toLowerCase() == options.organization.toLowerCase()
+        );
+      }
+
       const searcher = new MiniSearch({
         fields: ['full_name', 'description', 'homepage'],
         storeFields: ['full_name', 'description', 'homepage', 'forks', 'stargazers_count']
       });
-      searcher.addAll(data.flat());
+      searcher.addAll(flattenedData);
       let results = searcher.search(options.findParam);
       // Limit the search results
       results.splice(options.limit);

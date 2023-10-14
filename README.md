@@ -70,6 +70,9 @@ Options:
   -f, --find <keyword>
     The keyword you want to search for. Example: es6
 
+  -o, --org <org name>  (optional)
+    GitHub organisation name. Example: GitHub
+
   -l, --limit <number>
     Limit the search results to the specified number. Default is 10
 
@@ -82,7 +85,6 @@ Options:
   -d, --debug
     Outputs stack trace in case an exception is thrown
 ```
-
 
 ### Non-verbose output
 

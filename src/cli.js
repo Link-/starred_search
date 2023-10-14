@@ -22,6 +22,9 @@ Options:
 
   -f, --find <keyword>
     The keyword you want to search for. Example: es6
+  
+  -o, --org <org name>  (optional)
+    GitHub organisation name. Example: GitHub
 
   -l, --limit <number>
     Limit the search results to the specified number. Default is 10
@@ -44,6 +47,7 @@ const parseArgs = (rawArgs) => {
       '--help': Boolean,
       '--user': String,
       '--find': String,
+      '--org': String,
       '--cache-dir': String,
       '--limit': Number,
       '--verbose': Boolean,
@@ -53,6 +57,7 @@ const parseArgs = (rawArgs) => {
       '-h': '--help',
       '-u': '--user',
       '-f': '--find',
+      '-o': '--org',
       '-c': '--cache-dir',
       '-l': '--limit',
       '-V': '--verbose',
@@ -64,6 +69,7 @@ const parseArgs = (rawArgs) => {
     help: args['--help'],
     user: args['--user'],
     findParam: args['--find'],
+    organization: args['--org'],
     cacheDir: args['--cache-dir'] || cachedir('starredsearch'),
     limit: args['--limit'] || 10,
     verbose: args['--verbose'] || false,
