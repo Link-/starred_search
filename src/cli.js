@@ -4,7 +4,6 @@ const main = require('./main.js');
 const pkg = require('../package.json');
 const chalk = require('chalk');
 const cachedir = require('cachedir');
-require('dotenv').config()
 
 const help = `
 Usage: starred_search [OPTIONS] [ARGS]...
@@ -69,12 +68,20 @@ const parseArgs = (rawArgs) => {
     limit: args['--limit'] || 10,
     verbose: args['--verbose'] || false,
     version: args['--version'] || false,
-    ghAccessToken: process.env.GITHUB_TOKEN,
   }
+}
+
+const appendEnvVariables = (options) => {
+  if (process.env.GITHUB_TOKEN) {
+    console.log(chalk.bold.green('🔑  INFO: Using GITHUB_TOKEN environment variable'));
+    options.ghtoken = process.env.GITHUB_TOKEN;
+  }
+  return options
 }
 
 const cli = (args) => {
   let options = parseArgs(args)
+  options = appendEnvVariables(options)
 
   // Display commands guide
   if (options.help) {

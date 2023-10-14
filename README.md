@@ -88,8 +88,10 @@ Options:
 **Non-verbose output:**
 
 ```sh
-$ starred_search --user 'link-' --find 'es6'
+starred_search --user 'link-' --find 'es6'
+```
 
+```json
 [
   {
     "repo_name": "lukehoban/es6features",
@@ -115,8 +117,10 @@ $ starred_search --user 'link-' --find 'es6'
 **Verbose output & override cache directory:**
 
 ```sh
-$ starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6' --verbose
+starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6' --verbose
+```
 
+```json
 🕵    INFO: Searching for "es6" in "link-'s" starred catalogue
 ⚠️    INFO:: Serving search results from cache
 [
@@ -146,23 +150,47 @@ You can pipe the standard output to be handled by tools like [jq](https://stedol
 
 ```sh
 # Return the first search result only
-$ starred_search -u 'link-' -f 'es6' | jq '.[0]'
+starred_search -u 'link-' -f 'es6' | jq '.[0]'
+```
 
+```json
 {
   "repo_name": "lukehoban/es6features",
   "repo_description": "Overview of ECMAScript 6 features",
   "repo_url": "https://github.com/lukehoban/es6features",
   "repo_stars": 27672
 }
+```
 
+```sh
 # Return repo_name of every result element
 starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
+```
 
+```json
 [
   "lukehoban/es6features",
   "google/sa360-flightsfeed",
   "DrkSephy/es6-cheatsheet"
 ]
+```
+
+**Using a personal access token to increase the API rate limit**
+You can use a personal access token to increase the API rate limit from 60 requests per hour to 5000 requests per hour. Learn more about personal access tokens [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+
+```sh
+# Assuming you're using a bash shell
+export GITHUB_TOKEN="ghp_1234567890"
+starred_search -u 'link-' -f 'es6'
+```
+
+```json
+{
+  "repo_name": "lukehoban/es6features",
+  "repo_description": "Overview of ECMAScript 6 features",
+  "repo_url": "https://github.com/lukehoban/es6features",
+  "repo_stars": 27672
+}
 ```
 
 ## Release History

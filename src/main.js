@@ -50,8 +50,8 @@ const get_request_headers = (options) => {
     'User-Agent': 'Starred-Search Node.js module',
   }
 
-  if (options.ghAccessToken) {
-    headers['Authorization'] = `Bearer ${options.ghAccessToken}`
+  if (options.ghtoken) {
+    headers['Authorization'] = `Bearer ${options.ghtoken}`
   }
   return headers;
 }
@@ -144,7 +144,7 @@ const search = (options) => {
       let cacheHash = MurmurHash3(options.user).hash(pages.etag).result();
       let cache = flatCache.load(`${cacheHash}`, path.resolve(options.cacheDir));
       if (cache._persisted.data === undefined || Object.keys(cache._persisted).length == 0) {
-        (options.verbose) ? console.log(chalk.bold.green('✅    INFO:: Cache is empty, fetching data from GitHub')) : null;
+        (options.verbose) ? console.log(chalk.bold.green('✅    INFO: Cache is empty, fetching data from GitHub')) : null;
         return fetch_starred_repos(options, pages)
           .then((data) => {
             cache.setKey('data', data);
@@ -152,7 +152,7 @@ const search = (options) => {
             return data;
           });
       } else {
-        (options.verbose) ? console.log(chalk.bold.red(`⚠️    INFO:: Serving search results from cache ${options.cacheDir}`)) : null;
+        (options.verbose) ? console.log(chalk.bold.red(`⚠️    INFO: Serving search results from cache ${options.cacheDir}`)) : null;
         return cache.getKey('data');
       }
     })
