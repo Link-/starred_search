@@ -61,7 +61,7 @@ const parseArgs = (rawArgs) => {
       '-c': '--cache-dir',
       '-l': '--limit',
       '-V': '--verbose',
-      '-v': '--version'
+      '-v': '--version',
     }
   )
   return {
@@ -77,8 +77,17 @@ const parseArgs = (rawArgs) => {
   }
 }
 
+const appendEnvVariables = (options) => {
+  if (process.env.GITHUB_TOKEN) {
+    console.log(chalk.bold.green('🔑  INFO: Using GITHUB_TOKEN environment variable'));
+    options.ghtoken = process.env.GITHUB_TOKEN;
+  }
+  return options
+}
+
 const cli = (args) => {
   let options = parseArgs(args)
+  options = appendEnvVariables(options)
 
   // Display commands guide
   if (options.help) {
