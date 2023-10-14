@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   build-and-release:
@@ -38,7 +39,7 @@ jobs:
         author_email: 568794+Link-@users.noreply.github.com
         message: 'Update build'
         add: 'bin/starred_search'
-        new_branch: ${{ github.event.inputs.version }}
+        branch: ${{ github.event.inputs.version }}
         push: false
 
     - name: Update version
