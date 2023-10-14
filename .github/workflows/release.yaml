@@ -39,8 +39,6 @@ jobs:
         author_email: 568794+Link-@users.noreply.github.com
         message: 'Update build'
         add: 'bin/starred_search'
-        branch: ${{ github.event.inputs.version }}
-        push: false
 
     - name: Update version
       run: |
@@ -53,8 +51,6 @@ jobs:
         author_email: 568794+Link-@users.noreply.github.com
         message: 'Update version'
         add: 'package.json'
-        branch: ${{ github.event.inputs.version }}
-        push: false
 
     - name: Create PR
       uses: peter-evans/create-pull-request@v5
