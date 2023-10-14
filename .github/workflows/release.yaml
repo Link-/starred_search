@@ -62,6 +62,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         commit-message: 'Release ${{ github.event.inputs.version }}'
         title: 'Release ${{ github.event.inputs.version }}'
+        base: master
         branch: ${{ github.event.inputs.version }}
         delete-branch: true
         labels: |
