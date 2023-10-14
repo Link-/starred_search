@@ -342,13 +342,13 @@ var utils = __nccwpck_require__(328);
 var settle = __nccwpck_require__(3211);
 var buildFullPath = __nccwpck_require__(1934);
 var buildURL = __nccwpck_require__(646);
-var http = __nccwpck_require__(8605);
-var https = __nccwpck_require__(7211);
-var httpFollow = __nccwpck_require__(7707).http;
-var httpsFollow = __nccwpck_require__(7707).https;
-var url = __nccwpck_require__(8835);
-var zlib = __nccwpck_require__(8761);
-var pkg = __nccwpck_require__(696);
+var http = __nccwpck_require__(3685);
+var https = __nccwpck_require__(5687);
+var httpFollow = (__nccwpck_require__(7707).http);
+var httpsFollow = (__nccwpck_require__(7707).https);
+var url = __nccwpck_require__(7310);
+var zlib = __nccwpck_require__(9796);
+var pkg = __nccwpck_require__(8593);
 var createError = __nccwpck_require__(5226);
 var enhanceError = __nccwpck_require__(1516);
 
@@ -927,7 +927,7 @@ axios.isAxiosError = __nccwpck_require__(650);
 module.exports = axios;
 
 // Allow use of default import syntax in TypeScript
-module.exports.default = axios;
+module.exports["default"] = axios;
 
 
 /***/ }),
@@ -2168,7 +2168,7 @@ module.exports = function spread(callback) {
 "use strict";
 
 
-var pkg = __nccwpck_require__(696);
+var pkg = __nccwpck_require__(8593);
 
 var validators = {};
 
@@ -2913,8 +2913,8 @@ function expand(str, isTop) {
 /***/ 6974:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const os = __nccwpck_require__(2087)
-const path = __nccwpck_require__(5622)
+const os = __nccwpck_require__(2037)
+const path = __nccwpck_require__(1017)
 
 function posix (id) {
   const cacheHome = process.env.XDG_CACHE_HOME || path.join(os.homedir(), '.cache')
@@ -5361,8 +5361,8 @@ if (typeof process === 'undefined' || process.type === 'renderer' || process.bro
  * Module dependencies.
  */
 
-const tty = __nccwpck_require__(3867);
-const util = __nccwpck_require__(1669);
+const tty = __nccwpck_require__(6224);
+const util = __nccwpck_require__(3837);
 
 /**
  * This is the Node.js implementation of `debug()`.
@@ -5627,8 +5627,8 @@ formatters.O = function (v) {
 /***/ 3854:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-var path = __nccwpck_require__( 5622 );
-var fs = __nccwpck_require__( 5747 );
+var path = __nccwpck_require__( 1017 );
+var fs = __nccwpck_require__( 7147 );
 var utils = __nccwpck_require__( 9135 );
 var del = __nccwpck_require__( 8600 );
 var writeJSON = utils.writeJSON;
@@ -5831,8 +5831,8 @@ module.exports = {
 /***/ 8600:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-var rimraf = __nccwpck_require__(4959).sync;
-var fs = __nccwpck_require__( 5747 );
+var rimraf = (__nccwpck_require__(4959).sync);
+var fs = __nccwpck_require__( 7147 );
 
 module.exports = function del( file ) {
   if ( fs.existsSync( file ) ) {
@@ -5851,7 +5851,7 @@ module.exports = function del( file ) {
 /***/ 9135:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-var fs = __nccwpck_require__( 5747 );
+var fs = __nccwpck_require__( 7147 );
 var write = __nccwpck_require__( 3531 );
 var flatted = __nccwpck_require__( 9511 );
 
@@ -6040,12 +6040,12 @@ module.exports = function () {
 /***/ 7707:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-var url = __nccwpck_require__(8835);
+var url = __nccwpck_require__(7310);
 var URL = url.URL;
-var http = __nccwpck_require__(8605);
-var https = __nccwpck_require__(7211);
-var Writable = __nccwpck_require__(2413).Writable;
-var assert = __nccwpck_require__(2357);
+var http = __nccwpck_require__(3685);
+var https = __nccwpck_require__(5687);
+var Writable = (__nccwpck_require__(2781).Writable);
+var assert = __nccwpck_require__(9491);
 var debug = __nccwpck_require__(1133);
 
 // Create handlers that pass events from native requests
@@ -6652,7 +6652,7 @@ realpath.realpathSync = realpathSync
 realpath.monkeypatch = monkeypatch
 realpath.unmonkeypatch = unmonkeypatch
 
-var fs = __nccwpck_require__(5747)
+var fs = __nccwpck_require__(7147)
 var origRealpath = fs.realpath
 var origRealpathSync = fs.realpathSync
 
@@ -6739,9 +6739,9 @@ function unmonkeypatch () {
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var pathModule = __nccwpck_require__(5622);
+var pathModule = __nccwpck_require__(1017);
 var isWindows = process.platform === 'win32';
-var fs = __nccwpck_require__(5747);
+var fs = __nccwpck_require__(7147);
 
 // JavaScript implementation of realpath, ported from node pre-v6
 
@@ -7040,8 +7040,8 @@ function ownProp (obj, field) {
   return Object.prototype.hasOwnProperty.call(obj, field)
 }
 
-var fs = __nccwpck_require__(5747)
-var path = __nccwpck_require__(5622)
+var fs = __nccwpck_require__(7147)
+var path = __nccwpck_require__(1017)
 var minimatch = __nccwpck_require__(3973)
 var isAbsolute = __nccwpck_require__(8714)
 var Minimatch = minimatch.Minimatch
@@ -7317,16 +7317,16 @@ var rp = __nccwpck_require__(6863)
 var minimatch = __nccwpck_require__(3973)
 var Minimatch = minimatch.Minimatch
 var inherits = __nccwpck_require__(4124)
-var EE = __nccwpck_require__(8614).EventEmitter
-var path = __nccwpck_require__(5622)
-var assert = __nccwpck_require__(2357)
+var EE = (__nccwpck_require__(2361).EventEmitter)
+var path = __nccwpck_require__(1017)
+var assert = __nccwpck_require__(9491)
 var isAbsolute = __nccwpck_require__(8714)
 var globSync = __nccwpck_require__(9010)
 var common = __nccwpck_require__(7625)
 var setopts = common.setopts
 var ownProp = common.ownProp
 var inflight = __nccwpck_require__(2492)
-var util = __nccwpck_require__(1669)
+var util = __nccwpck_require__(3837)
 var childrenIgnored = common.childrenIgnored
 var isIgnored = common.isIgnored
 
@@ -8071,10 +8071,10 @@ globSync.GlobSync = GlobSync
 var rp = __nccwpck_require__(6863)
 var minimatch = __nccwpck_require__(3973)
 var Minimatch = minimatch.Minimatch
-var Glob = __nccwpck_require__(1957).Glob
-var util = __nccwpck_require__(1669)
-var path = __nccwpck_require__(5622)
-var assert = __nccwpck_require__(2357)
+var Glob = (__nccwpck_require__(1957).Glob)
+var util = __nccwpck_require__(3837)
+var path = __nccwpck_require__(1017)
+var assert = __nccwpck_require__(9491)
 var isAbsolute = __nccwpck_require__(8714)
 var common = __nccwpck_require__(7625)
 var setopts = common.setopts
@@ -8776,7 +8776,7 @@ function slice (args) {
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 try {
-  var util = __nccwpck_require__(1669);
+  var util = __nccwpck_require__(3837);
   /* istanbul ignore next */
   if (typeof util.inherits !== 'function') throw '';
   module.exports = util.inherits;
@@ -8828,10 +8828,10 @@ if (typeof Object.create === 'function') {
 module.exports = minimatch
 minimatch.Minimatch = Minimatch
 
-var path = { sep: '/' }
-try {
-  path = __nccwpck_require__(5622)
-} catch (er) {}
+var path = (function () { try { return __nccwpck_require__(1017) } catch (e) {}}()) || {
+  sep: '/'
+}
+minimatch.sep = path.sep
 
 var GLOBSTAR = minimatch.GLOBSTAR = Minimatch.GLOBSTAR = {}
 var expand = __nccwpck_require__(3717)
@@ -8883,43 +8883,64 @@ function filter (pattern, options) {
 }
 
 function ext (a, b) {
-  a = a || {}
   b = b || {}
   var t = {}
-  Object.keys(b).forEach(function (k) {
-    t[k] = b[k]
-  })
   Object.keys(a).forEach(function (k) {
     t[k] = a[k]
+  })
+  Object.keys(b).forEach(function (k) {
+    t[k] = b[k]
   })
   return t
 }
 
 minimatch.defaults = function (def) {
-  if (!def || !Object.keys(def).length) return minimatch
+  if (!def || typeof def !== 'object' || !Object.keys(def).length) {
+    return minimatch
+  }
 
   var orig = minimatch
 
   var m = function minimatch (p, pattern, options) {
-    return orig.minimatch(p, pattern, ext(def, options))
+    return orig(p, pattern, ext(def, options))
   }
 
   m.Minimatch = function Minimatch (pattern, options) {
     return new orig.Minimatch(pattern, ext(def, options))
+  }
+  m.Minimatch.defaults = function defaults (options) {
+    return orig.defaults(ext(def, options)).Minimatch
+  }
+
+  m.filter = function filter (pattern, options) {
+    return orig.filter(pattern, ext(def, options))
+  }
+
+  m.defaults = function defaults (options) {
+    return orig.defaults(ext(def, options))
+  }
+
+  m.makeRe = function makeRe (pattern, options) {
+    return orig.makeRe(pattern, ext(def, options))
+  }
+
+  m.braceExpand = function braceExpand (pattern, options) {
+    return orig.braceExpand(pattern, ext(def, options))
+  }
+
+  m.match = function (list, pattern, options) {
+    return orig.match(list, pattern, ext(def, options))
   }
 
   return m
 }
 
 Minimatch.defaults = function (def) {
-  if (!def || !Object.keys(def).length) return Minimatch
   return minimatch.defaults(def).Minimatch
 }
 
 function minimatch (p, pattern, options) {
-  if (typeof pattern !== 'string') {
-    throw new TypeError('glob pattern string required')
-  }
+  assertValidPattern(pattern)
 
   if (!options) options = {}
 
@@ -8927,9 +8948,6 @@ function minimatch (p, pattern, options) {
   if (!options.nocomment && pattern.charAt(0) === '#') {
     return false
   }
-
-  // "" only matches ""
-  if (pattern.trim() === '') return p === ''
 
   return new Minimatch(pattern, options).match(p)
 }
@@ -8939,15 +8957,14 @@ function Minimatch (pattern, options) {
     return new Minimatch(pattern, options)
   }
 
-  if (typeof pattern !== 'string') {
-    throw new TypeError('glob pattern string required')
-  }
+  assertValidPattern(pattern)
 
   if (!options) options = {}
+
   pattern = pattern.trim()
 
   // windows support: need to use /, not \
-  if (path.sep !== '/') {
+  if (!options.allowWindowsEscape && path.sep !== '/') {
     pattern = pattern.split(path.sep).join('/')
   }
 
@@ -8958,6 +8975,7 @@ function Minimatch (pattern, options) {
   this.negate = false
   this.comment = false
   this.empty = false
+  this.partial = !!options.partial
 
   // make the set of regexps etc.
   this.make()
@@ -8967,9 +8985,6 @@ Minimatch.prototype.debug = function () {}
 
 Minimatch.prototype.make = make
 function make () {
-  // don't do it more than once.
-  if (this._made) return
-
   var pattern = this.pattern
   var options = this.options
 
@@ -8989,7 +9004,7 @@ function make () {
   // step 2: expand braces
   var set = this.globSet = this.braceExpand()
 
-  if (options.debug) this.debug = console.error
+  if (options.debug) this.debug = function debug() { console.error.apply(console, arguments) }
 
   this.debug(this.pattern, set)
 
@@ -9069,17 +9084,27 @@ function braceExpand (pattern, options) {
   pattern = typeof pattern === 'undefined'
     ? this.pattern : pattern
 
-  if (typeof pattern === 'undefined') {
-    throw new TypeError('undefined pattern')
-  }
+  assertValidPattern(pattern)
 
-  if (options.nobrace ||
-    !pattern.match(/\{.*\}/)) {
+  // Thanks to Yeting Li <https://github.com/yetingli> for
+  // improving this regexp to avoid a ReDOS vulnerability.
+  if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
     // shortcut. no need to expand.
     return [pattern]
   }
 
   return expand(pattern)
+}
+
+var MAX_PATTERN_LENGTH = 1024 * 64
+var assertValidPattern = function (pattern) {
+  if (typeof pattern !== 'string') {
+    throw new TypeError('invalid pattern')
+  }
+
+  if (pattern.length > MAX_PATTERN_LENGTH) {
+    throw new TypeError('pattern is too long')
+  }
 }
 
 // parse a component of the expanded set.
@@ -9096,14 +9121,17 @@ function braceExpand (pattern, options) {
 Minimatch.prototype.parse = parse
 var SUBPARSE = {}
 function parse (pattern, isSub) {
-  if (pattern.length > 1024 * 64) {
-    throw new TypeError('pattern is too long')
-  }
+  assertValidPattern(pattern)
 
   var options = this.options
 
   // shortcuts
-  if (!options.noglobstar && pattern === '**') return GLOBSTAR
+  if (pattern === '**') {
+    if (!options.noglobstar)
+      return GLOBSTAR
+    else
+      pattern = '*'
+  }
   if (pattern === '') return ''
 
   var re = ''
@@ -9159,10 +9187,12 @@ function parse (pattern, isSub) {
     }
 
     switch (c) {
-      case '/':
+      /* istanbul ignore next */
+      case '/': {
         // completely not allowed, even escaped.
         // Should already be path-split by now.
         return false
+      }
 
       case '\\':
         clearStateChar()
@@ -9281,25 +9311,23 @@ function parse (pattern, isSub) {
 
         // handle the case where we left a class open.
         // "[z-a]" is valid, equivalent to "\[z-a\]"
-        if (inClass) {
-          // split where the last [ was, make sure we don't have
-          // an invalid re. if so, re-walk the contents of the
-          // would-be class to re-translate any characters that
-          // were passed through as-is
-          // TODO: It would probably be faster to determine this
-          // without a try/catch and a new RegExp, but it's tricky
-          // to do safely.  For now, this is safe and works.
-          var cs = pattern.substring(classStart + 1, i)
-          try {
-            RegExp('[' + cs + ']')
-          } catch (er) {
-            // not a valid class!
-            var sp = this.parse(cs, SUBPARSE)
-            re = re.substr(0, reClassStart) + '\\[' + sp[0] + '\\]'
-            hasMagic = hasMagic || sp[1]
-            inClass = false
-            continue
-          }
+        // split where the last [ was, make sure we don't have
+        // an invalid re. if so, re-walk the contents of the
+        // would-be class to re-translate any characters that
+        // were passed through as-is
+        // TODO: It would probably be faster to determine this
+        // without a try/catch and a new RegExp, but it's tricky
+        // to do safely.  For now, this is safe and works.
+        var cs = pattern.substring(classStart + 1, i)
+        try {
+          RegExp('[' + cs + ']')
+        } catch (er) {
+          // not a valid class!
+          var sp = this.parse(cs, SUBPARSE)
+          re = re.substr(0, reClassStart) + '\\[' + sp[0] + '\\]'
+          hasMagic = hasMagic || sp[1]
+          inClass = false
+          continue
         }
 
         // finish up the class.
@@ -9383,9 +9411,7 @@ function parse (pattern, isSub) {
   // something that could conceivably capture a dot
   var addPatternStart = false
   switch (re.charAt(0)) {
-    case '.':
-    case '[':
-    case '(': addPatternStart = true
+    case '[': case '.': case '(': addPatternStart = true
   }
 
   // Hack to work around lack of negative lookbehind in JS
@@ -9447,7 +9473,7 @@ function parse (pattern, isSub) {
   var flags = options.nocase ? 'i' : ''
   try {
     var regExp = new RegExp('^' + re + '$', flags)
-  } catch (er) {
+  } catch (er) /* istanbul ignore next - should be impossible */ {
     // If it was an invalid regular expression, then it can't match
     // anything.  This trick looks for a character after the end of
     // the string, which is of course impossible, except in multi-line
@@ -9505,7 +9531,7 @@ function makeRe () {
 
   try {
     this.regexp = new RegExp(re, flags)
-  } catch (ex) {
+  } catch (ex) /* istanbul ignore next - should be impossible */ {
     this.regexp = false
   }
   return this.regexp
@@ -9523,8 +9549,8 @@ minimatch.match = function (list, pattern, options) {
   return list
 }
 
-Minimatch.prototype.match = match
-function match (f, partial) {
+Minimatch.prototype.match = function match (f, partial) {
+  if (typeof partial === 'undefined') partial = this.partial
   this.debug('match', f, this.pattern)
   // short-circuit in the case of busted things.
   // comments, etc.
@@ -9606,6 +9632,7 @@ Minimatch.prototype.matchOne = function (file, pattern, partial) {
 
     // should be impossible.
     // some invalid regexp stuff in the set.
+    /* istanbul ignore if */
     if (p === false) return false
 
     if (p === GLOBSTAR) {
@@ -9679,6 +9706,7 @@ Minimatch.prototype.matchOne = function (file, pattern, partial) {
       // no match was found.
       // However, in partial mode, we can't say this is necessarily over.
       // If there's more *pattern* left, then
+      /* istanbul ignore if */
       if (partial) {
         // ran out of file
         this.debug('\n>>> no match, partial?', file, fr, pattern, pr)
@@ -9692,11 +9720,7 @@ Minimatch.prototype.matchOne = function (file, pattern, partial) {
     // patterns with magic have been turned into regexps.
     var hit
     if (typeof p === 'string') {
-      if (options.nocase) {
-        hit = f.toLowerCase() === p.toLowerCase()
-      } else {
-        hit = f === p
-      }
+      hit = f === p
       this.debug('string match', p, f, hit)
     } else {
       hit = f.match(p)
@@ -9727,16 +9751,16 @@ Minimatch.prototype.matchOne = function (file, pattern, partial) {
     // this is ok if we're doing the match as part of
     // a glob fs traversal.
     return partial
-  } else if (pi === pl) {
+  } else /* istanbul ignore else */ if (pi === pl) {
     // ran out of pattern, still have file left.
     // this is only acceptable if we're on the very last
     // empty segment of a file with a trailing slash.
     // a/* should match a/b/
-    var emptyFileEnd = (fi === fl - 1) && (file[fi] === '')
-    return emptyFileEnd
+    return (fi === fl - 1) && (file[fi] === '')
   }
 
   // should be unreachable.
+  /* istanbul ignore next */
   throw new Error('wtf?')
 }
 
@@ -11206,8 +11230,8 @@ function regExpEscape (s) {
 /***/ 6186:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-var path = __nccwpck_require__(5622);
-var fs = __nccwpck_require__(5747);
+var path = __nccwpck_require__(1017);
+var fs = __nccwpck_require__(7147);
 var _0777 = parseInt('0777', 8);
 
 module.exports = mkdirP.mkdirp = mkdirP.mkdirP = mkdirP;
@@ -11392,9 +11416,9 @@ module.exports.win32 = win32;
 module.exports = rimraf
 rimraf.sync = rimrafSync
 
-var assert = __nccwpck_require__(2357)
-var path = __nccwpck_require__(5622)
-var fs = __nccwpck_require__(5747)
+var assert = __nccwpck_require__(9491)
+var path = __nccwpck_require__(1017)
+var fs = __nccwpck_require__(7147)
 var glob = __nccwpck_require__(1957)
 var _0666 = parseInt('666', 8)
 
@@ -11762,8 +11786,8 @@ function rmkidsSync (p, options) {
 
 "use strict";
 
-const os = __nccwpck_require__(2087);
-const tty = __nccwpck_require__(3867);
+const os = __nccwpck_require__(2037);
+const tty = __nccwpck_require__(6224);
 const hasFlag = __nccwpck_require__(1621);
 
 const {env} = process;
@@ -11953,8 +11977,8 @@ function wrappy (fn, cb) {
 
 
 
-var fs = __nccwpck_require__(5747);
-var path = __nccwpck_require__(5622);
+var fs = __nccwpck_require__(7147);
+var path = __nccwpck_require__(1017);
 var mkdirp = __nccwpck_require__(6186);
 
 /**
@@ -12112,7 +12136,7 @@ module.exports = writeFile;
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const axios = __nccwpck_require__(6545);
-const path = __nccwpck_require__(5622);
+const path = __nccwpck_require__(1017);
 const chalk = __nccwpck_require__(8818);
 const flatCache = __nccwpck_require__(3854);
 const MiniSearch = __nccwpck_require__(9622);
@@ -12154,6 +12178,22 @@ const construct_api_url = (options) => {
 }
 
 /**
+ * generate request headers for github
+ * 
+ * @param {*} options 
+ */
+const get_request_headers = (options) => {
+  let headers = {
+    'User-Agent': 'Starred-Search Node.js module',
+  }
+
+  if (options.ghtoken) {
+    headers['Authorization'] = `Bearer ${options.ghtoken}`
+  }
+  return headers;
+}
+
+/**
  * Parses the `link` response header to calculate the number of pages
  * based on a maximum of 100 items per page
  * 
@@ -12163,9 +12203,7 @@ const calculate_pages = (options) => {
   return axios({
     method: 'get',
     url: `${construct_api_url(options)}?per_page=1`,
-    headers: {
-      'User-Agent': 'Starred-Search Node.js module'
-    },
+    headers: get_request_headers(options),
   })
     .then((response) => {
       let pages = {};
@@ -12188,9 +12226,7 @@ const fetch_page = (options, page_number) => {
   return axios({
     method: 'get',
     url: `${construct_api_url(options)}?per_page=${max_pages_per_request}&page=${page_number}`,
-    headers: {
-      'User-Agent': 'starred_search Node.js module'
-    },
+    headers: get_request_headers(options),
   })
     .then((response) => {
       return response.data;
@@ -12230,7 +12266,12 @@ const fetch_starred_repos = (options, pages) => {
  * @param {*} options 
  */
 const search = (options) => {
-  (options.verbose) ? console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" in "${options.user}"'s starred catalogue`)) : null;
+  let organizationLog = '';
+  if (options.verbose) {
+    organizationLog = options.organization ? `(belonging to org: ${options.organization})` : '';
+    console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" ${organizationLog} in "${options.user}"'s starred catalogue`))
+  }
+
   validate_parameters(options);
 
   return calculate_pages(options)
@@ -12245,7 +12286,7 @@ const search = (options) => {
       let cacheHash = MurmurHash3(options.user).hash(pages.etag).result();
       let cache = flatCache.load(`${cacheHash}`, path.resolve(options.cacheDir));
       if (cache._persisted.data === undefined || Object.keys(cache._persisted).length == 0) {
-        (options.verbose) ? console.log(chalk.bold.green('✅    INFO:: Cache is empty, fetching data from GitHub')) : null;
+        (options.verbose) ? console.log(chalk.bold.green('✅    INFO: Cache is empty, fetching data from GitHub')) : null;
         return fetch_starred_repos(options, pages)
           .then((data) => {
             cache.setKey('data', data);
@@ -12253,7 +12294,7 @@ const search = (options) => {
             return data;
           });
       } else {
-        (options.verbose) ? console.log(chalk.bold.red(`⚠️    INFO:: Serving search results from cache ${options.cacheDir}`)) : null;
+        (options.verbose) ? console.log(chalk.bold.red(`⚠️    INFO: Serving search results from cache ${options.cacheDir}`)) : null;
         return cache.getKey('data');
       }
     })
@@ -12263,11 +12304,21 @@ const search = (options) => {
        * then we do a full-text search only in the 'full_name, 
        * description and homepage' fields.
        */
+      let flattenedData = data.flat();
+      
+      // if the organization option was passed, run the search on the repos
+      // belonging to that organization only
+      if (options.organization) {
+        flattenedData = flattenedData.filter(repo =>
+          repo.owner.type == "Organization" && repo.owner.login.toLowerCase() == options.organization.toLowerCase()
+        );
+      }
+
       const searcher = new MiniSearch({
         fields: ['full_name', 'description', 'homepage'],
         storeFields: ['full_name', 'description', 'homepage', 'forks', 'stargazers_count']
       });
-      searcher.addAll(data.flat());
+      searcher.addAll(flattenedData);
       let results = searcher.search(options.findParam);
       // Limit the search results
       results.splice(options.limit);
@@ -12297,7 +12348,103 @@ module.exports = {
 
 /***/ }),
 
-/***/ 696:
+/***/ 9491:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("assert");
+
+/***/ }),
+
+/***/ 2361:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("events");
+
+/***/ }),
+
+/***/ 7147:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ 3685:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("http");
+
+/***/ }),
+
+/***/ 5687:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("https");
+
+/***/ }),
+
+/***/ 2037:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("os");
+
+/***/ }),
+
+/***/ 1017:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("path");
+
+/***/ }),
+
+/***/ 2781:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("stream");
+
+/***/ }),
+
+/***/ 6224:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("tty");
+
+/***/ }),
+
+/***/ 7310:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("url");
+
+/***/ }),
+
+/***/ 3837:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("util");
+
+/***/ }),
+
+/***/ 9796:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("zlib");
+
+/***/ }),
+
+/***/ 8593:
 /***/ ((module) => {
 
 "use strict";
@@ -12305,107 +12452,11 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 
 /***/ }),
 
-/***/ 306:
+/***/ 4147:
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"starred_search","version":"0.1.12","description":"Search your starred repositories on GitHub for a keyword.","main":"src/cli.js","scripts":{"test":"mocha","build":"ncc build src/cli.js -o bin && mv bin/index.js bin/starred_search"},"bin":{"@link-/starred_search":"bin/starred_search","starred_search":"bin/starred_search"},"repository":{"type":"git","url":"git+https://github.com/Link-/starred_search.git"},"bugs":{"url":"https://github.com/Link-/starred_search/issues"},"homepage":"https://github.com/Link-/starred_search/#readme","keywords":["GitHub","repository","fulltext search","starred","stargazers","cli","terminal","nodejs"],"author":"Link-","license":"ISC","dependencies":{"@vercel/ncc":"^0.28.4","arg":"^4.1.3","axios":"^0.21.1","cachedir":"^2.3.0","chalk":"^4.1.0","esm":"^3.2.25","flat-cache":"^2.0.1","imurmurhash":"^0.1.4","minisearch":"^3.0.2"},"devDependencies":{"chai":"^4.3.6","mocha":"^10.0.0","prettier":"^2.2.1"}}');
-
-/***/ }),
-
-/***/ 2357:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("assert");;
-
-/***/ }),
-
-/***/ 8614:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("events");;
-
-/***/ }),
-
-/***/ 5747:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("fs");;
-
-/***/ }),
-
-/***/ 8605:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("http");;
-
-/***/ }),
-
-/***/ 7211:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("https");;
-
-/***/ }),
-
-/***/ 2087:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("os");;
-
-/***/ }),
-
-/***/ 5622:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("path");;
-
-/***/ }),
-
-/***/ 2413:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("stream");;
-
-/***/ }),
-
-/***/ 3867:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("tty");;
-
-/***/ }),
-
-/***/ 8835:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("url");;
-
-/***/ }),
-
-/***/ 1669:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("util");;
-
-/***/ }),
-
-/***/ 8761:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("zlib");;
+module.exports = JSON.parse('{"name":"starred_search","version":"0.1.12","description":"Search your starred repositories on GitHub for a keyword.","main":"src/cli.js","scripts":{"test":"mocha","build":"ncc build src/cli.js -o bin && mv bin/index.js bin/starred_search","all":"npm test && npm run build"},"bin":{"@link-/starred_search":"bin/starred_search","starred_search":"bin/starred_search"},"repository":{"type":"git","url":"git+https://github.com/Link-/starred_search.git"},"bugs":{"url":"https://github.com/Link-/starred_search/issues"},"homepage":"https://github.com/Link-/starred_search/#readme","keywords":["GitHub","repository","fulltext search","starred","stargazers","cli","terminal","nodejs"],"author":"Link-","license":"ISC","dependencies":{"@vercel/ncc":"^0.38.0","arg":"^4.1.3","axios":"^1.5.1","cachedir":"^2.3.0","chalk":"^5.3.0","esm":"^3.2.25","flat-cache":"^2.0.1","imurmurhash":"^0.1.4","minisearch":"^6.1.0"},"devDependencies":{"chai":"^4.3.6","mocha":"^10.0.0","prettier":"^2.2.1"}}');
 
 /***/ })
 
@@ -12456,13 +12507,15 @@ module.exports = require("zlib");;
 /******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
-/******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";/************************************************************************/
+/******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
+/******/ 	
+/************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const arg = __nccwpck_require__(9482);
 const main = __nccwpck_require__(1713);
-const pkg = __nccwpck_require__(306);
+const pkg = __nccwpck_require__(4147);
 const chalk = __nccwpck_require__(8818);
 const cachedir = __nccwpck_require__(6974);
 
@@ -12483,6 +12536,9 @@ Options:
 
   -f, --find <keyword>
     The keyword you want to search for. Example: es6
+  
+  -o, --org <org name>  (optional)
+    GitHub organisation name. Example: GitHub
 
   -l, --limit <number>
     Limit the search results to the specified number. Default is 10
@@ -12505,6 +12561,7 @@ const parseArgs = (rawArgs) => {
       '--help': Boolean,
       '--user': String,
       '--find': String,
+      '--org': String,
       '--cache-dir': String,
       '--limit': Number,
       '--verbose': Boolean,
@@ -12514,10 +12571,11 @@ const parseArgs = (rawArgs) => {
       '-h': '--help',
       '-u': '--user',
       '-f': '--find',
+      '-o': '--org',
       '-c': '--cache-dir',
       '-l': '--limit',
       '-V': '--verbose',
-      '-v': '--version'
+      '-v': '--version',
     }
   )
   return {
@@ -12525,6 +12583,7 @@ const parseArgs = (rawArgs) => {
     help: args['--help'],
     user: args['--user'],
     findParam: args['--find'],
+    organization: args['--org'],
     cacheDir: args['--cache-dir'] || cachedir('starredsearch'),
     limit: args['--limit'] || 10,
     verbose: args['--verbose'] || false,
@@ -12532,8 +12591,17 @@ const parseArgs = (rawArgs) => {
   }
 }
 
+const appendEnvVariables = (options) => {
+  if (process.env.GITHUB_TOKEN) {
+    console.log(chalk.bold.green('🔑  INFO: Using GITHUB_TOKEN environment variable'));
+    options.ghtoken = process.env.GITHUB_TOKEN;
+  }
+  return options
+}
+
 const cli = (args) => {
   let options = parseArgs(args)
+  options = appendEnvVariables(options)
 
   // Display commands guide
   if (options.help) {
