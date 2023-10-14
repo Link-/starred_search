@@ -41,7 +41,7 @@
     "esm": "^3.2.25",
     "flat-cache": "^2.0.1",
     "imurmurhash": "^0.1.4",
-    "minisearch": "^3.0.2"
+    "minisearch": "^6.1.0"
   },
   "devDependencies": {
     "chai": "^4.3.6",
