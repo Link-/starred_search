@@ -71,7 +71,7 @@ Options:
     The keyword you want to search for. Example: es6
 
   -o, --org <org name>  (optional)
-    Any GitHub Organisation Name. Example: GitHub
+    GitHub organisation name. Example: GitHub
 
   -l, --limit <number>
     Limit the search results to the specified number. Default is 10

@@ -117,7 +117,11 @@ const fetch_starred_repos = (options, pages) => {
  * @param {*} options 
  */
 const search = (options) => {
-  (options.verbose) ? console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" ${options.organization ? `(inside org: ${options.organization})`: '' } in "${options.user}"'s starred catalogue`)) : null;
+  let organizationLog = '';
+  if (options.organization) {
+    organizationLog = `(belonging to org: ${options.organization})`;
+  }
+  (options.verbose) ? console.log(chalk.bold.green(`🕵    INFO: Searching for "${options.findParam}" ${organizationLog} in "${options.user}"'s starred catalogue`)) : null;
   validate_parameters(options);
 
   return calculate_pages(options)
@@ -153,7 +157,7 @@ const search = (options) => {
       let flattenedData = data.flat();
       
       // if the organization option was passed, only filter results relevant to that org
-      if(options.organization) {
+      if (options.organization) {
         flattenedData = flattenedData.filter(repo => 
             repo.owner.type == "Organization"
             && repo.owner.login.toLowerCase() == options.organization.toLowerCase()
