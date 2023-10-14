@@ -86,7 +86,6 @@ Options:
     Outputs stack trace in case an exception is thrown
 ```
 
-
 ### Non-verbose output
 
 ```sh
