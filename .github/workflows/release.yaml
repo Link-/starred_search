@@ -33,7 +33,7 @@ jobs:
         npm version ${{ github.event.inputs.version }} --allow-same-version --no-git-tag-version
 
     - name: Commit package.json
-      uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
+      uses: EndBug/add-and-commit@1bad3abcf0d6ec49a5857d124b0bfb52dc7bb081
       with:
         author_name: Link-
         author_email: 568794+Link-@users.noreply.github.com
@@ -46,7 +46,7 @@ jobs:
         npm run build
 
     - name: Commit new build
-      uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
+      uses: EndBug/add-and-commit@1bad3abcf0d6ec49a5857d124b0bfb52dc7bb081
       with:
         author_name: Link-
         author_email: 568794+Link-@users.noreply.github.com
