@@ -8,6 +8,9 @@ on:
         description: 'Release version'
         required: true
 
+permissions:
+  contents: write
+
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
@@ -22,7 +25,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        npm install
+        npm ci
 
     - name: Build package
       run: |
@@ -32,21 +35,39 @@ jobs:
       uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
       with:
         author_name: Link-
-        author_email: bassem@interop.link
+        author_email: 568794+Link-@users.noreply.github.com
         message: 'Update build'
         add: 'bin/starred_search'
 
     - name: Update version
       run: |
-        npm version ${{ github.event.inputs.name }}
+        npm version ${{ github.event.inputs.version }}
 
-    - name: Push new version and tag
+    - name: Push package.json
       uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
       with:
         author_name: Link-
-        author_email: bassem@interop.link
+        author_email: 568794+Link-@users.noreply.github.com
         message: 'Update version'
         add: 'package.json'
+
+    - name: Tag version
+      run: |
+        git tag ${{ github.event.inputs.version }}
+
+    - name: Push tag
+      uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
+      with:
+        author_name: Link-
+        author_email: 568794+Link-@users.noreply.github.com
+
+    - uses: actions/create-release@master
+      name: Create ${{ github.event.inputs.version }} Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: "${{ github.event.inputs.version }}"
+        release_name: "${{ github.event.inputs.version }}"
 
     - name: Release
       uses: JS-DevTools/npm-publish@0f451a94170d1699fd50710966d48fb26194d939
