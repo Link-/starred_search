@@ -32,25 +32,27 @@ jobs:
       run: |
         npm run build
 
-    - name: Push new build
+    - name: Commit new build
       uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
       with:
         author_name: Link-
         author_email: 568794+Link-@users.noreply.github.com
         message: 'Update build'
         add: 'bin/starred_search'
+        push: false
 
     - name: Update version
       run: |
         npm version ${{ github.event.inputs.version }} --allow-same-version
 
-    - name: Push package.json
+    - name: Commit package.json
       uses: EndBug/add-and-commit@a3adef035a1381dcf888c90b847240e2ddb9e008
       with:
         author_name: Link-
         author_email: 568794+Link-@users.noreply.github.com
         message: 'Update version'
         add: 'package.json'
+        push: false
 
     - name: Create PR
       uses: peter-evans/create-pull-request@v5
