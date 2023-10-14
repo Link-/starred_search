@@ -37,6 +37,7 @@
     "axios": "^0.21.1",
     "cachedir": "^2.3.0",
     "chalk": "^4.1.0",
+    "dotenv": "^16.3.1",
     "esm": "^3.2.25",
     "flat-cache": "^2.0.1",
     "imurmurhash": "^0.1.4",
