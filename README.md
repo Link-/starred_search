@@ -83,9 +83,8 @@ Options:
     Outputs stack trace in case an exception is thrown
 ```
 
-### Examples
 
-**Non-verbose output:**
+### Non-verbose output
 
 ```sh
 starred_search --user 'link-' --find 'es6'
@@ -114,7 +113,7 @@ starred_search --user 'link-' --find 'es6'
 ]
 ```
 
-**Verbose output & override cache directory:**
+### Verbose output & override cache directory
 
 ```sh
 starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6' --verbose
@@ -145,7 +144,8 @@ starred_search --user 'link-' --cache-dir '/tmp/.cache' --find 'es6' --verbose
 ]
 ```
 
-**Parsing the output with jq**
+### Parsing the output with jq
+
 You can pipe the standard output to be handled by tools like [jq](https://stedolan.github.io/jq/) for more magic:
 
 ```sh
@@ -175,7 +175,8 @@ starred_search -u 'link-' -f 'es6' | jq 'map(.repo_name)'
 ]
 ```
 
-**Using a personal access token to increase the API rate limit**
+### Using a personal access token to increase the API rate limit
+
 You can use a personal access token to increase the API rate limit from 60 requests per hour to 5000 requests per hour. Learn more about personal access tokens [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
 ```sh
