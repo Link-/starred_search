@@ -39,7 +39,7 @@
     "cachedir": "^2.3.0",
     "chalk": "^4.1.2",
     "esm": "^3.2.25",
-    "flat-cache": "^3.1.1",
+    "flat-cache": "^4.0.0",
     "imurmurhash": "^0.1.4",
     "minisearch": "^6.1.0"
   },
